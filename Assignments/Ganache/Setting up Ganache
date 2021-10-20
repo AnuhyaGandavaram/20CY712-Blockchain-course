@@ -1,1 +1,16 @@
+Ganache is a Private Simulated Blockchain Network with a wallet having 10 accounts holding 100 eth each. The following steps can be followed to setup and explore ganache and truffle framework
 
+1. Download ganache from https://www.trufflesuite.com/ganache and install
+2. Download and install node.js. Refer https://www.fosstechnix.com/how-to-install-node-js-on-windows/#:~:text=%20How%20to%20Install%20Node.js%20on%20Windows%2010,javascript%20file%20with%20name%20nodeapp.js%20in...%20More%20
+3. use "npm install -g truffle" to setup truffle framework
+4. "truffle unbox <project> can be used to download an existing project from truffle
+5. "truffle compile" sets up the downloaded project
+5. "truffle migrate" is used for deploying
+
+other truffle commands are
+truffle init
+truffle develop
+truffle console
+truffle debug
+truffle test
+truffle publish

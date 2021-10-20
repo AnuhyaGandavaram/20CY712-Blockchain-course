@@ -1,1 +1,30 @@
+Geth is the go implementation of ethereum. The following are the steps to be followed
 
+1. Download Geth (geth) from https://geth.ethereum.org/downloads/
+2. Create a Genesis File. In Ethereum, Genesis file defines the configuration of the Ethereum Network.
+   Create a separate folder 
+	 Create a file called genesis.json and place the below content
+		
+{
+  "config": {
+    "chainId": 5777,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "ethash": {}
+  },
+  "gasLimit": "0x47b760",
+  "difficulty": "0x44",
+  "alloc": {}
+}
+		
+
+3. Initialize the network by initializing the genesis file using "geth --datadir data init genesis.json"
+4. Create a Ethereum Wallet Address using "geth --datadir data account new" (You will be asked to enter a password for this account) 
+5. Start the network by using "geth --identity "ABC" --networkid "5777" --datadir "data" --http --http.port "8545" --unlock "0" --http.corsdomain "*" --http.api "miner,eth,net,web3,personal" --allow-insecure-unlock--nodiscover --miner.etherbase "0"" (You will be prompted to enter the password to unlock the account) 
+6. Now open a new command prompt / terminal and Start mining by using "geth attach ipc:\\.\pipe\geth.ipc" followed by "miner.start()"
+7. Whenever you need to stop, provide "miner.stop()"

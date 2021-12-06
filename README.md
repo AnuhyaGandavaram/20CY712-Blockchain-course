@@ -18,6 +18,11 @@ contract deployment address:
  - [Transaction 1](https://ropsten.etherscan.io/tx/0x01cca00cbc60b59da25163e726021396861f0f162f839b137bfe8aa7836d485e) <br/>
  - [Transaction 2](https://ropsten.etherscan.io/tx/0x01cca00cbc60b59da25163e726021396861f0f162f839b137bfe8aa7836d485e) <br/>
 
+# GI application
+
+contract deployment address:
+[0x467cfc22dac55be54a05ca409e272694958675e9](https://ropsten.etherscan.io/tx/0xbf5e6e924e262da6776f78b5213c77fec06c152c6dd3399d3ce88a67ff418d45)
+
 # MyERC721Token program
 
 contract deployment address:

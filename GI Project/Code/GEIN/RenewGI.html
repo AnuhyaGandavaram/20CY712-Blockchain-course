@@ -1,0 +1,317 @@
+<!-- 
+Author       : Anuhya Gandavaram
+Date Created : December - 2021
+Date Updated : 22.12.2021
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GEIN</title>
+    <meta charset="UTF-8"/>
+	<style>
+	body{        
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+	.container{
+        width: 80%;
+        margin: 0 auto; 
+    }
+	.fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background: #868bf7;
+        padding: 10px 0;
+        color:#160075;
+    }
+	.fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+    } 
+	.container p{
+		padding-top: 90px;
+        line-height: 20px;
+    }
+	
+	</style>
+</head>
+<body>
+	<div class="fixed-header">
+		<div class="container">
+		<center>
+			<h2> GEIN </h2>
+		</center>
+		</div>
+	</div>
+        
+	<div class="container">	
+	<p>
+		<b><u> Renewal of Geographical Indication</u></b><br/><br/>
+		<form>
+			<table>
+			 <tr><td> Application ID : </td> <td> <input type="text" id="application_id" name="application_id"> </td></tr>
+			 <tr><td> <input type="button" onclick="renew_gi()" value="Renew"></td></tr>
+			</table>
+			
+			<h4> Transaction ID: <a href="https://ropsten.etherscan.io/"><div id="result"></div></a> </h4>
+			
+		</form>
+	</p>	
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
+    <script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+			
+			}
+			// Legacy DApp browsers
+			else if (window.web3) {
+				//window.web3 = new Web3(web3.currentProvider);
+				window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+				}
+			// Non-DApp browsers
+			else {
+				console.log('Non-Ethereum browser detected. Please install MetaMask');
+				}
+			
+			});
+			
+			// Smart Contract ABI - Application Binary Interfaces
+			var abi = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "newApplication",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_application_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_applicant_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_description",
+				"type": "string"
+			},
+			{
+				"internalType": "uint16",
+				"name": "_class_of_the_item",
+				"type": "uint16"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_category",
+				"type": "uint8"
+			},
+			{
+				"internalType": "string",
+				"name": "_regions_of_produce",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_status",
+				"type": "uint8"
+			}
+		],
+		"name": "apply_gi",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_application_id",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_status",
+				"type": "uint8"
+			}
+		],
+		"name": "approve_gi",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_applicant_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_names",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_addresses",
+				"type": "string"
+			}
+		],
+		"name": "register_applicant",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_application_id",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_status",
+				"type": "uint8"
+			}
+		],
+		"name": "renew_gi",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_application_id",
+				"type": "string"
+			}
+		],
+		"name": "status",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_applicant_id",
+				"type": "string"
+			}
+		],
+		"name": "verify_applicant",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+			
+			//Smart Contract Address
+			var contractaddress = '0xd6274364d1cd9226667483433b604ec36e56052b';
+
+			// Function to call the "Anonymize Day" in Deployed Smart Contract
+			function renew_gi(){
+					
+				console.log("Renewing GI");
+						
+				//Instantiate and connect to contract address via ABI
+				var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+				
+				status = 1;
+				//call the "renew_gi" function
+				console.log("Passing Values: ", document.getElementById("application_id").value, status)
+				var result = myContract.methods.renew_gi(document.getElementById("application_id").value, status).send(function (err, result) {
+				
+				console.log("Result: ", result)
+				
+				if (err) { console.log(err); }
+				if (result) { document.getElementById("result").innerHTML = result; }
+				
+				});
+					
+			}
+						
+    </script>
+	
+	<div class="fixed-footer">
+		<div class="container">
+			<center> <h5> Copyright &copy; 2021-2022 <br/> Anuhya G, Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India </h5> </center>
+		</div>
+	</div>
+
+</body>
+</html>

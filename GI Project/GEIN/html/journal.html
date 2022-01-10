@@ -1,0 +1,146 @@
+<!--
+Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
+Created Date: 08 Jan 2022
+Updated Date: 10 Jan 2022
+Base Template: code-mentor.org and Glozzom Theme
+Description: Journal Home Page
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GI Journal | GEIN </title>
+  <link rel="icon" type="x-icon" href="../images/GEIN.png">
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/slick-theme.css">
+  <link rel="stylesheet" href="../css/slick.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
+    <div class="container">
+      <a href="about.html" class="navbar-brand">GEIN</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="../index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="journal.html" class="nav-link">Journal</a>
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link">Github</a>
+          </li>   
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto text-center">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Journal SECTION -->
+  <section id="journal" class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card p-4">
+            <div class="card-body">
+              <h3 class="text-center">Select the journal to view</h3>
+				<form>
+				<table>
+					<tr><td> Journal ID: </td> <td> <input type="text" id="journal_id" name="journal_id"> </td><td> <input type="button" onclick="get_journal()" value="Get" id="get"></td></tr>
+					<tr><td><div id="ipfs_hash"></div></td></tr>
+				</table>	
+				</form>   
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
+  <script src="js/slick.js"></script>
+  <script src="js/main.js"></script>
+  <script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+		}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+			
+		}
+			// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+		}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			alert('Non-Ethereum browser detected. Please install MetaMask');
+		}
+			
+	});			
+
+	function get_journal() {
+					
+		console.log("Getting Journal Hash");
+
+		//Instantiate and connect to contract address via ABI
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+												
+		//call the "get journal" function
+		console.log("Passing Values: ", document.getElementById("journal_id").value)
+		var result = myContract.methods.get_journal(document.getElementById("journal_id").value).call(function (err, result) {
+		console.log("result: ", result);
+
+		if (err) { console.log(err); }
+		if (result) { document.getElementById("ipfs_hash").innerHTML = result[0]; }
+		});
+				
+	}
+						
+    </script>
+</body>
+</html>

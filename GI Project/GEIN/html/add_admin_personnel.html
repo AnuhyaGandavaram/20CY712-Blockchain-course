@@ -1,0 +1,188 @@
+<!--
+Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
+Created Date: 08 Jan 2022
+Updated Date: 10 Jan 2022
+Base Template: code-mentor.org and Glozzom Theme
+Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality Check Inspector) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Add Admin Personnel | GEIN </title>
+  <link rel="icon" type="x-icon" href="../images/GEIN.png">
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/slick-theme.css">
+  <link rel="stylesheet" href="../css/slick.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
+    <div class="container">
+      <a href="about.html" class="navbar-brand">GEIN</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="../index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="journal.html" class="nav-link">Journal</a>
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link">Github</a>
+          </li>   
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto text-center">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Add Administration Personnel SECTION -->
+  <section id="add_role" class="py-5">
+  <div class="container">
+	<h3 align="center">Add Admin Personnel</h3>
+	<p>
+		<form>
+			<table>
+			 <tr><td> Address: </td> <td> <input type="text" id="wallet_address" name="wallet_address"> </td></tr>
+			 <tr><td> Role: </td> <td> <select id="role" name="role"><option value=1>Admin</option> <option value=2>GIR</option> <option value=3>QC</option> <option value=4>Publisher</option> </select></td></tr>
+			 <tr><td> <input type="button" onclick="add_role()" value="Add" id="Add"></td></tr>
+			</table>		
+	</p>	
+	</div>
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+	<script src="../js/gein.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
+	<script>
+		var account;
+		window.addEventListener('load', async () => {
+
+			if (typeof window.ethereum !== 'undefined') { 
+				console.log("MetaMask is Available :) !"); 
+			}
+			
+			// Modern DApp browsers
+			if (window.ethereum) {
+				window.web3 = new Web3(ethereum);
+			
+				// To prevent the page reloading when the MetaMask network changes
+				ethereum.autoRefreshOnNetworkChange = false;
+			
+				// To Capture the account details from MetaMask
+				const accounts = await ethereum.enable();
+				account = accounts[0];
+			}
+			// Legacy DApp browsers
+			else if (window.web3) {
+				//window.web3 = new Web3(web3.currentProvider);
+				window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+			}
+			// Non-DApp browsers
+			else {
+				console.log('Non-Ethereum browser detected. Please install MetaMask');
+				alert('Non-Ethereum browser detected. Please install MetaMask');
+			}
+			
+		});
+		
+
+		// Function to call the "add_role" in Deployed Smart Contract
+		function add_role(){
+			//Instantiate and connect to contract address via ABI
+			var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+			wallet_address = document.getElementById("wallet_address").value
+			if(document.getElementById("role").value == 1){
+			
+				console.log("Adding Admin");
+				console.log("Passing Values: ", wallet_address)
+				
+				//call the "add_admin" function
+				var result = myContract.methods.add_admin(wallet_address).send(function (err, result) {
+				if (err) { console.log(err); }
+				if (result) { 
+					console.log("Result: ", result)
+					document.getElementById("result").innerHTML = result; 
+					}
+				});
+			}
+			else if(document.getElementById("role").value == 2){
+			
+				console.log("Adding GIR");
+				console.log("Passing Values: ", wallet_address)
+				
+				//call the "add_gir" function
+				var result = myContract.methods.add_gir(wallet_address).send(function (err, result) {
+				if (err) { console.log(err); }
+				if (result) { 
+					console.log("Result: ", result)
+					document.getElementById("result").innerHTML = result; 
+					}
+				});
+			}
+			else if(document.getElementById("role").value == 3){
+			
+				console.log("Adding Quality Checker");
+				console.log("Passing Values: ", wallet_address)
+				
+				//call the "add_qc" function
+				var result = myContract.methods.add_qc(wallet_address).send(function (err, result) {
+				if (err) { console.log(err); }
+				if (result) { 
+					console.log("Result: ", result)
+					document.getElementById("result").innerHTML = result; 
+					}
+				});
+			}
+			else(document.getElementById("role").value == 4){
+			
+				console.log("Adding Publisher");
+				console.log("Passing Values: ", wallet_address)
+				
+				//call the "add_publisher" function
+				var result = myContract.methods.add_publisher(wallet_address).send(function (err, result) {
+				if (err) { console.log(err); }
+				if (result) { 
+					console.log("Result: ", result)
+					document.getElementById("result").innerHTML = result; 
+					}
+				});
+			}
+					
+		}	
+    </script>
+    </div>
+  </div>
+  </section>
+
+
+ <footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
+  <script src="js/slick.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!--
+Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
+Created Date: 08 Jan 2022
+Updated Date: 10 Jan 2022
+Base Template: code-mentor.org and Glozzom Theme
+Description: Main Page for GEIN
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GEIN Home Page</title>
+  <link rel="icon" type="x-icon" href="images/GEIN.png">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
+    <div class="container">
+      <a href="html/about.html" class="navbar-brand">GEIN</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="html/journal.html" class="nav-link">Journal</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link">Github</a>
+          </li>   
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SHOWCASE SLIDER -->
+  <section id="showcase">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item carousel-image-1 active">
+          <div class="container">
+            <div class="carousel-caption d-none d-sm-block text-center mb-5">
+              <h1 class="display-3">Handicrafts</h1>
+			  <p>Thanjavur doll is a traditional handicrafts of Thanjavur region of Chennai, Tamil Nadu. They are made using terracotta and are purely handmade and hand painted by skilled artists.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item carousel-image-2">
+          <div class="container">
+            <div class="carousel-caption d-none d-sm-block mb-5">
+              <h1 class="display-3">Foods</h1>
+			  <p>Tirupati Laddu is the laddu sweet offered as Naivedhyam to Venkateswara at Tirumala Venkateswara Temple in Tirupati, Chittoor District, Andhra Pradesh. The laddu prasadam is prepared within the temple kitchen by the temple board Tirumala Tirupati Devasthanams. </p> 
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item carousel-image-3">
+          <div class="container">
+            <div class="carousel-caption d-none d-sm-block mb-5">
+              <h1 class="display-3">Manufactured</h1>
+			  <p>Mysore Sandal Soap is a brand of soap manufactured by the Karnataka Soaps and Detergents Limited, a company owned by the government of Karnataka in India. Mysore Sandal Soap is the only soap in the world made from 100% pure sandalwood oil. </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item carousel-image-4">
+          <div class="container">
+            <div class="carousel-caption d-none d-sm-block mb-5">
+              <h1 class="display-3">Natural</h1>
+			  <p> Makrana marble is a type of white marble, popular for use in sculpture and building decor. It is mined in the town of Makrana in Rajasthan, India, and was used in the construction of several iconic monuments such as the Taj Mahal in Agra and the Victoria Memorial in Kolkata. </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item carousel-image-5">
+          <div class="container">
+            <div class="carousel-caption d-none d-sm-block text-center mb-5">
+              <h1 class="display-3">Agricultural</h1>
+			  <p> Various products from Indian agricultual fields are known for their special properties. Some of the products are tea, coffee, rice, wheat, oranges, bananas, mangoes, pepper, cardamom and chili. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#myCarousel" data-slide="prev" class="carousel-control-prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+
+      <a href="#myCarousel" data-slide="next" class="carousel-control-next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Stakeholder ICON SECTION -->
+  <section id="stakeholders" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-university mb-2"></i>
+		  <a href="html/administration.html" class="nav-link">Administration</a>
+        </div>
+        <div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-user-circle mb-2"></i>
+		  <a href="html/gir.html" class="nav-link">GIR</a>
+        </div>
+        <div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-user mb-2"></i>
+		  <a href="html/applicant.html" class="nav-link">Applicant</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
+  <script src="js/main.js"></script>
+  <script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+		}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+			
+		}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+		}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			alert('Non-Ethereum browser detected. Please install MetaMask');
+		}
+		
+	});
+						
+    </script>
+	
+ <footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

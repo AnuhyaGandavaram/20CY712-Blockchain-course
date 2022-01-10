@@ -1,0 +1,289 @@
+<!--
+Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
+Created Date: 08 Jan 2022
+Updated Date: 10 Jan 2022
+Base Template: code-mentor.org and Glozzom Theme
+Description: Apply GI -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Apply GI | GEIN</title>
+  <link rel="icon" type="x-icon" href="../images/GEIN.png">
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/slick-theme.css">
+  <link rel="stylesheet" href="../css/slick.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
+    <div class="container">
+      <a href="about.html" class="navbar-brand">GEIN</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="../index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="journal.html" class="nav-link">Journal</a>
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link">Github</a>
+          </li>   
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto text-center">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- APPLY SECTION -->
+  <section id="apply_gi" class="py-5">
+    <div class="container">
+	  <h3 align="center">Apply for Geographical Indication</h3>
+	  </br></br>             
+		<p>
+		<form>
+			<table>
+			 <tr><td> Application ID: </td> <td> <input type="text" id="application_id" name="application_id"> </td></tr>
+			 <tr><td> Applicant ID: </td> <td> <input type="text" id="applicant_id" name="applicant_id"> </td> <td> <input type="button" onclick="verify_applicant()" value="Verify" ></td> </tr>
+			 <tr><td> Applicant Name: </td> <td> <div id="applicant_name"></div></td> </tr>
+ 			 <tr><td> Applicant Address: </td> <td> <div id="applicant_address"></div></td> </tr>
+ 			 <tr><td> Applicant Email: </td> <td> <div id="applicant_email"></div></td> </tr>
+ 			 <tr><td> Applicant Phone: </td> <td> <div id="applicant_phone"></div></td> </tr>
+ 			 <tr><td> Applicant City: </td> <td> <div id="applicant_city"></div></td> </tr>
+ 			 <tr><td> Applicant State: </td> <td> <div id="applicant_state"></div></td> </tr>
+			 <tr><td> Product Name: </td> <td> <input type="text" id="name" name="name"> </td></tr>
+			 <tr><td> Product Description: </td> <td> <input type="text" id="description" name="description"> </td></tr>
+			 <tr><td> Class of the Product: </td> <td> <input type="number" id="class" name="class"> </td></tr>
+			 <tr><td> Category of the Product: </td> <td> <select id="category" name="category"><option value=1>Food</option> <option value=2>Handicrafts</option> <option value=3>Agriculture</option> <option value=4>Manufactured</option> <option value=5>Natural</option> </select></td></tr>
+			 <tr><td> Latitude of Region of Produce: </td> <td> <input type="text" id="lat_of_region" name="lat_of_region"></td></tr>
+			 <tr><td> Longitude of Region of Produce: </td> <td> <input type="text" id="long_of_region" name="long_of_region"></td></tr>
+			 <tr><td> Export: </td><td> <select id="export" name="export"><option value=1>Yes</option><option value=2>No</option></td></tr>
+			 <tr><td> Previous Application Number: </td> <td> <input type="text" id="previous_application_number" name="previous_application_number"> </td></tr>
+			 <tr><td> <input type="button" onclick="apply_gi()" value="Apply" id="apply" disabled="disabled"></td></tr>
+			</table>	
+		</form>
+	</p>	
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+    <script src="../js/gein.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/merkletreejs@0.2.27/merkletree.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/crypto-js@3.3.0/sha256.js"></script>
+	<!--script src="https://cdn.jsdelivr.net/npm/h3-js@3.7.0/dist/h3-js.js"></script-->
+	<script src="https://unpkg.com/h3-js"></script>
+	<script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+		}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+			
+		}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+		}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			alert('Non-Ethereum browser detected. Please install MetaMask');
+		}
+			
+	});			
+
+	// Function to call the "apply_gi" in Deployed Smart Contract
+	function apply_gi(){
+					
+		console.log("Applying for GI");
+						
+		//Instantiate and connect to contract address via ABI
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+				
+		// Convert the Lat and Long to the corresponding geohash using the h3-js library
+		var geoh = toGeoHash(document.getElementById("lat_of_region").value, document.getElementById("long_of_region").value, 6);
+				
+		// Compute the Merkle Root by generating the MerkleTree 
+		merkletree = createMerkleTree(geoh)[0];
+		
+		merkleroot = createMerkleTree(geoh)[1];
+			
+		//call the "apply_gi" function
+		console.log("Passing Values: ", document.getElementById("application_id").value, document.getElementById("applicant_id").value, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)
+	
+		var result = myContract.methods.apply_gi(document.getElementById("application_id").value, document.getElementById("applicant_id").value, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, merkleroot, merkletree, document.getElementById("regions").value, document.getElementById("previous_application_number").value).send(function (err, result) {
+				
+			console.log("Result: ", result)
+				
+			if (err) { console.log(err); }
+			if (result) { alert("GI application initiated"); }
+				
+		});
+					
+	}
+	
+	function verify_applicant() {
+					
+		console.log("Getting Applicant details");
+						
+		//Instantiate and connect to contract address via ABI
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+								
+		//var applicant_id = 1;
+				
+		//call the "verify applicant" function
+		console.log("Passing Values: ", document.getElementById("applicant_id").value)
+		var result = myContract.methods.verify_applicant_full(document.getElementById("applicant_id").value).call(function (err, result) {
+			console.log("result: ", result);
+
+			if (err) { console.log(err); }
+			if (result) { 
+				document.getElementById("applicant_name").innerHTML = result[0]; 
+				document.getElementById("applicant_address").innerHTML = result[1];
+				document.getElementById("applicant_email").innerHTML = result[2];
+				document.getElementById("applicant_phone").innerHTML = result[3];
+				document.getElementById("applicant_city").innerHTML = result[4];
+				document.getElementById("applicant_state").innerHTML = result[5];
+			}
+			if (result[0] != '') {document.getElementById("apply").disabled = false; }
+		});
+				
+	}
+						
+    </script>
+	<script>
+		// Author : Ramaguru Radhakrishnan
+		// Date   : 08 Jan 2022 
+		// Merkle Tree Generation and Verification
+		// Install as "npm install merkletreejs"
+
+		//const { MerkleTree } = require('merkletreejs')
+		//const SHA256 = require('crypto-js/sha256')
+
+		function createMerkleTree(leaves, leavesmap)
+		{
+			console.log("***********************************************");
+			console.log("Creating Merkle Tree for the Leaves : ", leaves);
+			const tree = new MerkleTree(leavesmap, SHA256)
+			const root = tree.getRoot().toString('hex')
+			console.log("The computed root is ", root);
+			console.log("***********************************************");
+			return [tree, root];
+		}
+
+		function checkMerkleTree(leaf, root, tree)
+		{
+			console.log("***********************************************");
+			console.log("Checking Merkle Tree for the Leaf Node : ", leaf, " with root value ", root);
+			const leafhash = SHA256(leaf)
+			const proof = tree.getProof(leafhash)
+			return tree.verify(proof, leafhash, root);
+		}
+
+		function printTree(tree)
+		{
+			console.log("***********************************************");
+			console.log("Printing Merkle Tree...");
+			console.log(tree.toString());
+			console.log("***********************************************");
+		}
+
+		const leaves = ['Ramaguru R', 'Thambi', 'Molu', 'Ammu', 'Una']
+		const leavesmap = leaves.map(x => SHA256(x))
+		const leaf = 'Una'
+
+		treeroot = createMerkleTree(leaves, leavesmap);
+		console.log(checkMerkleTree(leaf,treeroot[1], treeroot[0]));
+		printTree(treeroot[0]);
+		
+		lat = 10.898061;
+        lng = 76.90031;
+		geohash = toGeoHash(lat, lng, 10);
+		geohashList = ['8a603148880ffff','8a603148880fffa','8a603148880ffas','8a603148880acb']
+		console.log(geohash);
+		const geohashmap = geohashList.map(x => SHA256(x))
+		console.log(geohashList,geohashmap)
+	</script>
+	<script>
+		// Author : Ramaguru Radhakrishnan
+		// Date   : 07 Jan 2022 
+		// GeoHash from H3
+		// Install as "npm install h3-js"
+
+		//const h3 = require("h3-js");
+
+		function toGeoHash(lat, lng, res) {
+		  // Example Lat and Long of Ettimadai, Coimbatore
+		  // const lat = 10.898061;
+		  // const lng = 76.90031;
+		  // const res = 10;
+		  return h3.geoToH3(lat, lng, res);
+		}
+
+		function fromGeoHash(h) {
+		  //const h = '8a603148880ffff';
+		  return h3.h3ToGeo(h);
+		}
+
+		function getBoundary(h) {
+		  //const h = '8a603148880ffff';
+		  return h3.h3ToGeoBoundary(h);
+		}
+
+		console.log("The Geo Hash of Ettimadai is ", toGeoHash("10.898061", "76.90031", "10"), "\n");
+		console.log("The Lat and Long of Ettimadai from GeoHash is ", fromGeoHash("8a603148880ffff"), "\n");
+		console.log("The Boundary Lat and Long for GeoHash is ", getBoundary("8a603148880ffff"), "\n");
+		
+		
+	</script>
+    </div>
+  </section>
+
+
+ <footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
+  <script src="js/slick.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

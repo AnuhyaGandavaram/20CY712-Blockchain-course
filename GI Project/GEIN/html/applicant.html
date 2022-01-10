@@ -1,0 +1,140 @@
+<!--
+Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
+Created Date: 08 Jan 2022
+Updated Date: 10 Jan 2022
+Base Template: code-mentor.org and Glozzom Theme
+Description: Applicant Home Page  
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Applicant Home | GEIN</title>
+  <link rel="icon" type="x-icon" href="../images/GEIN.png">
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
+    <div class="container">
+      <a href="about.html" class="navbar-brand">GEIN</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="../index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="journal.html" class="nav-link">Journal</a>
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link">Github</a>
+          </li>   
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+  <header id="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto text-center">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Applicant SECTION -->
+  <section id="applicant-functions" class="py-5">
+    <div class="container">
+	  <h3 align="center">Applicant Functionalities</h3>
+	  </br></br>
+      <div class="row">
+        <div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-user-plus mb-2"></i>
+		  <a href="register_applicant.html" class="nav-link">Register</a>
+        </div>
+        <div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-upload mb-2"></i>
+		  <a href="update_applicant.html" class="nav-link">Update</a>
+        </div>
+        <div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-eye mb-2"></i>
+		  <a href="verify_applicant.html" class="nav-link">Verify</a>
+        </div>
+        <div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-map-marker mb-2"></i>
+		  <a href="apply_gi.html" class="nav-link">Apply</a>
+        </div>
+		<div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-compass mb-2"></i>
+		  <a href="status_gi.html" class="nav-link">Status</a>
+        </div>
+		<div class="col-md-4 mb-4 text-center">
+          <i class="fa fa-hourglass-start mb-2"></i>
+		  <a href="renew_gi.html" class="nav-link">Renew</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+  <script src="../js/gein.js"></script>
+  <script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+		}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+			
+		}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+		}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			alert('Non-Ethereum browser detected. Please install MetaMask');
+		}
+			
+	});
+						
+    </script>
+	
+	<footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

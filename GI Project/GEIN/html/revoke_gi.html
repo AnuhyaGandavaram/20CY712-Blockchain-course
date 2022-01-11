@@ -1,9 +1,10 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 10 Jan 2022
+Updated Date: 11 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Revoking GI Status by GIR or QC -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +58,7 @@ Description: Revoking GI Status by GIR or QC -->
 	  <p>
 		<form>
 			<table>
-			 <tr><td> Application ID: </td> <td> <input type="text" id="application_id" name="application_id"> </td></tr>
+			 <tr><td> Application ID: </td> <td> <input type="text" id="application_id" name="application_id" size="8" maxLength="8" required> </td></tr>
 			 <tr><td> Reason for Revokation: </td> <td> <select id="revoke_reason" name="revoke_reason"><option value=1>Quality not upto the mark</option> <option value=2>Violation reported</option> </select></td></tr>
 			 <tr><td> <input type="button" onclick="revoke_gi()" value="Revoke" id="revoke"></td></tr>
 			</table>		
@@ -101,6 +102,22 @@ Description: Revoking GI Status by GIR or QC -->
 			
 	});
 
+	const GI_STATUS = { 
+		"APPLIED": 0, 
+		"GIROBJECTION": 1,
+		"QCAPPROVED": 2, 
+		"APPLICATIONAPPROVED": 3,
+		"OBJECTION": 4,
+		"GIGRANTED": 5,
+		"GIREVOKED": 6,
+	};
+		
+	const GI_STATUS_CHANGE_REASON = { 
+		"QC_STATISFACTORY": 0,
+		"QC_NS": 1,
+		"TAG_VIOLATION": 2,
+	};
+	
 	// Function to call the "revoke_gi" in Deployed Smart Contract
 	function revoke_gi(){
 					

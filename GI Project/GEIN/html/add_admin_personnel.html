@@ -101,11 +101,12 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 		// Function to call the "add_role" in Deployed Smart Contract
 		function add_role(){
 			
-			if(document.getElementById("wallet_address").value.startsWith("0x")){
+			wallet_address = document.getElementById("wallet_address").value;
+			if(wallet_address.startsWith("0x")){
 				
 				//Instantiate and connect to contract address via ABI
 				var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
-				wallet_address = document.getElementById("wallet_address").value
+				
 				if(document.getElementById("role").value == 1){
 
 					console.log("Adding Admin");

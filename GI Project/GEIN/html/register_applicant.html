@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 10 Jan 2022
+Updated Date: 11 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Register Applicant Page (New User Creation Page)
 -->
@@ -58,23 +58,22 @@ Description: Register Applicant Page (New User Creation Page)
 		<p>
 		<form>
 			<table>
-			 <tr><td> Applicant ID : </td> <td> <input type="text" id="applicant_id" name="applicant_id"> </td></tr>
-			 <tr><td> Name : </td> <td> <input type="text" id="applicant_name" name="applicant_name"> </td></tr>
-			 <tr><td> Address : </td> <td> <input type="text" id="applicant_address" name="applicant_address"> </td></tr>
-			 <tr><td> E-Mail : </td> <td> <input type="text" id="applicant_email" name="applicant_email"> </td></tr>
-			 <tr><td> Phone : </td> <td> <input type="text" id="applicant_phone" name="applicant_phone"> </td></tr>
-			 <tr><td> City : </td> <td> <input type="text" id="applicant_city" name="applicant_city"> </td></tr>
-			 <tr><td> State : </td> <td> <input type="text" id="applicant_state" name="applicant_state"> </td></tr>
+			 <tr><td> Name : </td> <td> <input type="text" id="applicant_name" name="applicant_name" size="24" maxLength="24" required> </td></tr>
+			 <tr><td> Address : </td> <td> <input type="text" id="applicant_address" name="applicant_address" size="100" maxLength="100" required> </td></tr>
+			 <tr><td> E-Mail : </td> <td> <input type="email" id="applicant_email" name="applicant_email" required> </td></tr>
+			 <tr><td> Phone : </td> <td> <input type="text" id="applicant_phone" name="applicant_phone" required> </td></tr>
+			 <tr><td> City : </td> <td> <input type="text" id="applicant_city" name="applicant_city" size="24" maxLength="24" required> </td></tr>
+			 <tr><td> State : </td> <td> <input type="text" id="applicant_state" name="applicant_state" size="24" maxLength="24" required> </td></tr>
 			 <tr><td> <input type="button" onclick="register_applicant()" value="Register"></td></tr>
 			</table>			
 		</form>
 	</p>	
 	</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
-    <script src="../js/gein.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+    	<script src="../js/gein.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
-    <script>	
+    	<script>	
 	
 	var account;
 	window.addEventListener('load', async () => {
@@ -111,6 +110,7 @@ Description: Register Applicant Page (New User Creation Page)
 	// Function to call the "register_applicant" in Deployed Smart Contract
 	function register_applicant(){
 
+		var applicant_id = "did:avvcyber:eth_ropsten:" + account;
 		console.log("Registering applicant");
 						
 		//Instantiate and connect to contract address via ABI
@@ -119,9 +119,9 @@ Description: Register Applicant Page (New User Creation Page)
 		//call the "register_applicant" function
 		console.log("Passing values: ",document.getElementById("applicant_id").value, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value );
 
-		var result = myContract.methods.register_applicant(document.getElementById("applicant_id").value, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
+		var result = myContract.methods.register_applicant(applicant_id, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
 				
-			console.log("Result: ", result)
+			console.log("Result: ", result);
 			if (err) { console.log(err); }
 			if (result) { alert("Registration Initiated"); }
 								

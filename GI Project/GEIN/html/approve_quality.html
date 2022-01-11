@@ -97,20 +97,21 @@ Description: Quality Check Approval Page-->
 			}		
 		});
 			
-		enum GI_STATUS { 
-			APPLIED, 
-			GIROBJECTION,
-			QCAPPROVED,
-			APPLICATIONAPPROVED,
-			OBJECTION,
-			GIGRANTED,
-			GIREVOKED }
+		const GI_STATUS = { 
+		"APPLIED": 0, 
+		"GIROBJECTION": 1,
+		"QCAPPROVED": 2, 
+		"APPLICATIONAPPROVED": 3,
+		"OBJECTION": 4,
+		"GIGRANTED": 5,
+		"GIREVOKED": 6,
+	       };
 		
-		enum GI_STATUS_CHANGE_REASON { 
-			QC_STATISFACTORY,
-			QC_NS,
-			TAG_VIOLATION
-		}
+	        const GI_STATUS_CHANGE_REASON = { 
+		"QC_STATISFACTORY": 0,
+		"QC_NS": 1,
+		"TAG_VIOLATION": 2,
+	         };
 		
 		// Function to call the "update_gi_status" in Deployed Smart Contract
 		function approve_qc(){

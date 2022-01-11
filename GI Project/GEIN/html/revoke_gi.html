@@ -58,14 +58,14 @@ Description: Revoking GI Status by GIR or QC -->
 	  <p>
 		<form>
 			<table>
-			 <tr><td> Application ID: </td> <td> <input type="text" id="application_id" name="application_id" size="8" maxLength="8" required> </td></tr>
-			 <tr><td> Reason for Revokation: </td> <td> <select id="revoke_reason" name="revoke_reason"><option value=1>Quality not upto the mark</option> <option value=2>Violation reported</option> </select></td></tr>
+			 <tr><td> GEIN ID: </td> <td> <input type="text" id="GEIN_id" name="GEIN_id" size="8" maxLength="8" required> </td></tr>
+			 <tr><td> Reason for Revocation: </td> <td> <select id="revoke_reason" name="revoke_reason"><option value=1>Quality not upto the mark</option> <option value=2>Violation reported</option> </select></td></tr>
 			 <tr><td> <input type="button" onclick="revoke_gi()" value="Revoke" id="revoke"></td></tr>
 			</table>		
 	</p>	
 	</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
 	<script src="../js/gein.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
 	<script>	
@@ -126,10 +126,10 @@ Description: Revoking GI Status by GIR or QC -->
 		//Instantiate and connect to contract address via ABI
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 					
-		console.log("Passing Values: ", document.getElementById("application_id").value, document.getElementById("revoke_reason").value)
+		console.log("Passing Values: ", document.getElementById("GEIN_id").value, document.getElementById("revoke_reason").value)
 
 		//call the "apply_gi" function				
-		var result = myContract.methods.revoke_gi(document.getElementById("application_id").value, document.getElementById("applicant_id").value, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, document.getElementById("regions").value, status).send(function (err, result) {
+		var result = myContract.methods.revoke_gi(document.getElementById("GEIN_id").value, document.getElementById("revoke_reason").value).send(function (err, result) {
 				
 			console.log("Result: ", result)
 				

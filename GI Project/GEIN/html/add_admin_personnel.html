@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 10 Jan 2022
+Updated Date: 11 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality Check Inspector) -->
 <!DOCTYPE html>
@@ -56,13 +56,13 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 	<p>
 		<form>
 			<table>
-			<tr><td> Address: </td> <td> <input type="text" id="wallet_address" name="wallet_address" size="42" maxLength="4" required> </td></tr>
+			<tr><td> Address: </td> <td> <input type="text" id="wallet_address" name="wallet_address" size="42" maxLength="42" required> </td></tr>
 			<tr><td> Role: </td> <td> <select id="role" name="role" required><option value=0></option><option value=1>Admin</option> <option value=2>GIR</option> <option value=3>QC</option> <option value=4>Publisher</option> </select></td></tr>
 			<tr><td> <input type="button" onclick="add_role()" value="Add Personnel" id="Add"></td></tr>
 			</table>		
 	</p>	
 	</div>
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
 	<script src="../js/gein.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
 	<script>
@@ -101,8 +101,8 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 		// Function to call the "add_role" in Deployed Smart Contract
 		function add_role(){
 			
-			wallet_address = document.getElementById("wallet_address").value;
-			if(wallet_address.startsWith("0x")){
+			var wallet_address = document.getElementById("wallet_address").value;
+			if(wallet_address.startsWith("0x") && wallet_address.length==42){
 				
 				//Instantiate and connect to contract address via ABI
 				var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
@@ -110,13 +110,13 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 				if(document.getElementById("role").value == 1){
 
 					console.log("Adding Admin");
-					console.log("Passing Values: ", wallet_address)
+					console.log("Passing Values: ", wallet_address);
 
 					//call the "add_admin" function
 					var result = myContract.methods.add_admin(wallet_address).send(function (err, result) {
 					if (err) { console.log(err); }
 					if (result) { 
-						console.log("Result: ", result)
+						console.log("Result: ", result);
 						document.getElementById("result").innerHTML = result; 
 						}
 					});
@@ -124,13 +124,13 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 				else if(document.getElementById("role").value == 2){
 
 					console.log("Adding GIR");
-					console.log("Passing Values: ", wallet_address)
+					console.log("Passing Values: ", wallet_address);
 
 					//call the "add_gir" function
 					var result = myContract.methods.add_gir(wallet_address).send(function (err, result) {
 					if (err) { console.log(err); }
 					if (result) { 
-						console.log("Result: ", result)
+						console.log("Result: ", result);
 						document.getElementById("result").innerHTML = result; 
 						}
 					});
@@ -138,30 +138,33 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 				else if(document.getElementById("role").value == 3){
 
 					console.log("Adding Quality Checker");
-					console.log("Passing Values: ", wallet_address)
+					console.log("Passing Values: ", wallet_address);
 
 					//call the "add_qc" function
 					var result = myContract.methods.add_qc(wallet_address).send(function (err, result) {
 					if (err) { console.log(err); }
 					if (result) { 
-						console.log("Result: ", result)
+						console.log("Result: ", result);
 						document.getElementById("result").innerHTML = result; 
 						}
 					});
 				}
-				else(document.getElementById("role").value == 4){
+				else if(document.getElementById("role").value == 4){
 
 					console.log("Adding Publisher");
-					console.log("Passing Values: ", wallet_address)
+					console.log("Passing Values: ", wallet_address);
 
 					//call the "add_publisher" function
 					var result = myContract.methods.add_publisher(wallet_address).send(function (err, result) {
 					if (err) { console.log(err); }
 					if (result) { 
-						console.log("Result: ", result)
+						console.log("Result: ", result);
 						document.getElementById("result").innerHTML = result; 
 						}
 					});
+				}
+				else{
+					alert("Not a valid choice");
 				}
 			}
 			else{

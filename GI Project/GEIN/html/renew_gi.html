@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 10 Jan 2022
+Updated Date: 11 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Renew GI Status
 -->
@@ -53,12 +53,12 @@ Description: Renew GI Status
   <!-- RENEWAL SECTION -->
   <section id="renew_gi" class="py-5">
     <div class="container">
-	  <h3 align="center">Renew Your GEIN</h3>
+	  <h3 align="center">Renew GEIN</h3>
 	  </br></br>             
        	<p>
 		<form>
 			<table>
-			 <tr><td> GEIN ID : </td> <td> <input type="text" id="application_id" name="application_id"> </td></tr>
+			 <tr><td> GEIN ID : </td> <td> <input type="text" id="application_id" name="application_id" size="8" maxLength="8" required> </td></tr>
 			 <tr><td> <input type="button" onclick="renew_gi()" value="Renew"></td></tr>
 			</table>			
 		</form>
@@ -111,6 +111,8 @@ Description: Renew GI Status
 							
 		//call the "renew_gi" function
 		console.log("Passing values: ",document.getElementById("application_id").value );
+		
+		alert("You will be redirected to Payment Gateway. Payment Successful.");
 
 		var result = myContract.methods.renew_gi(document.getElementById("application_id").value ).send(function (err, result) {
 				

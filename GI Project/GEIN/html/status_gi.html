@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 11 Jan 2022
+Updated Date: 12 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: View GI Status -->
 <!DOCTYPE html>
@@ -57,19 +57,17 @@ Description: View GI Status -->
        	<p>
 		<form>
 			<table>
-			 <tr><td> Application ID : </td> <td> <input type="text" id="applicant_id" name="applicant_id"> </td><td> <input type="button" onclick="gi_status()" value="Get"></td></tr>
-			 <tr><td> Applicant ID: <div id="applicant_id"></div></td></tr>
-			 <tr><td> Product Name: <div id="product_name"></div></td></tr>
-			 <tr><td> GEIN Status: <div id="gi_status"></div></td></tr>
+			 <tr><td> Application/GEIN ID : </td> <td> <input type="text" id="application_id" name="applicant_id"> </td><td> <input type="button" onclick="gi_status()" value="Get"></td></tr>
+			<tr><td> <div id="result"></div></td></tr>
 			</table>			
 		</form>
 	</p>	
 	</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
-    <script src="../js/gein.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+    	<script src="../js/gein.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
-    <script>	
+    	<script>	
 	
 	var account;
 	window.addEventListener('load', async () => {
@@ -118,13 +116,9 @@ Description: View GI Status -->
 			console.log("Result: ", result)
 			if (err) { console.log(err); }
 			if (result) { 
-				document.getElementById("applicant_id").innerHTML = result[0]; 
-				document.getElementById("product_name").innerHTML = result[1]; 
-				document.getElementById("gi_status").innerHTML = result[2]; 
+				document.getElementById("result").innerHTML += "<table><tr><td> Applicant DID: </td> <td> " + result[0] + " </td> </tr> <tr><td> Product Name: </td> <td> " + result[1] + "</td> </tr> <tr><td> Application/GEIN Status: </td> <td> " + result[2] + " </td> </tr> </table>"; 
 			}
-								
-		});
-					
+		});		
 	}
 									
     </script>

@@ -112,13 +112,10 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					console.log("Adding Admin");
 					console.log("Passing Values: ", wallet_address);
 
-					//call the "add_admin" function
+					//call the "addAdmin" function
 					var result = myContract.methods.addAdmin(wallet_address).send(function (err, result) {
-					if (err) { console.log(err); }
-					if (result) { 
-						console.log("Result: ", result);
-						document.getElementById("result").innerHTML = result; 
-						}
+						if (err) { console.log(err); }
+						if (result) { console.log("Transaction ID: ", result);}
 					});
 				}
 				else if(document.getElementById("role").value == 2){
@@ -126,27 +123,21 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					console.log("Adding GIR");
 					console.log("Passing Values: ", wallet_address);
 
-					//call the "add_gir" function
+					//call the "addGIR" function
 					var result = myContract.methods.addGIR(wallet_address).send(function (err, result) {
-					if (err) { console.log(err); }
-					if (result) { 
-						console.log("Result: ", result);
-						document.getElementById("result").innerHTML = result; 
-						}
+						if (err) { console.log(err); }
+						if (result) { console.log("Transaction ID: ", result);}
 					});
 				}
 				else if(document.getElementById("role").value == 3){
 
-					console.log("Adding Quality Checker");
+					console.log("Adding Quality Check Inspector");
 					console.log("Passing Values: ", wallet_address);
 
-					//call the "add_qc" function
+					//call the "addQC" function
 					var result = myContract.methods.addQC(wallet_address).send(function (err, result) {
-					if (err) { console.log(err); }
-					if (result) { 
-						console.log("Result: ", result);
-						document.getElementById("result").innerHTML = result; 
-						}
+						if (err) { console.log(err); }
+						if (result) { console.log("Transaction ID: ", result); }
 					});
 				}
 				else if(document.getElementById("role").value == 4){
@@ -154,13 +145,10 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					console.log("Adding Publisher");
 					console.log("Passing Values: ", wallet_address);
 
-					//call the "add_publisher" function
+					//call the "addPublisher" function
 					var result = myContract.methods.addPublisher(wallet_address).send(function (err, result) {
-					if (err) { console.log(err); }
-					if (result) { 
-						console.log("Result: ", result);
-						document.getElementById("result").innerHTML = result; 
-						}
+						if (err) { console.log(err); }
+						if (result) { console.log("Transaction ID: ", result);	}
 					});
 				}
 				else{

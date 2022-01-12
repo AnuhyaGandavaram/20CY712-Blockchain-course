@@ -110,16 +110,16 @@ Description: Register Applicant Page (New User Creation Page)
 	// Function to call the "register_applicant" in Deployed Smart Contract
 	function register_applicant(){
 
-		var applicant_id = "did:avvcyber:eth_ropsten:" + account;
+		var applicant_did = "did:avvcyber:eth_ropsten:" + account;
 		console.log("Registering applicant");
 						
 		//Instantiate and connect to contract address via ABI
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 							
 		//call the "register_applicant" function
-		console.log("Passing values: ",document.getElementById("applicant_id").value, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value );
+		console.log("Passing values: ", applicant_did, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value );
 
-		var result = myContract.methods.register_applicant(applicant_id, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
+		var result = myContract.methods.register_applicant(applicant_did, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
 				
 			console.log("Result: ", result);
 			if (err) { console.log(err); }

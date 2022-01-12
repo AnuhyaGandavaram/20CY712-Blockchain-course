@@ -72,6 +72,7 @@ Description: Verify Applicant Details Page
     	<script>	
 	
 	var account;
+	var did;
 	window.addEventListener('load', async () => {
 
 		if (typeof window.ethereum !== 'undefined') { 
@@ -100,7 +101,8 @@ Description: Verify Applicant Details Page
 			console.log('Non-Ethereum browser detected. Please install MetaMask');
 			alert('Non-Ethereum browser detected. Please install MetaMask');
 		}
-		document.getElementById("applicant_did").innerHTML = "did:avvcyber:eth-ropsten:" + account;
+		did = did:avvcyber:eth-ropsten:" + account
+		document.getElementById("applicant_did").innerHTML = did;
 	});
 						
 
@@ -113,13 +115,13 @@ Description: Verify Applicant Details Page
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 												
 		//call the "verify_applicant_full" function
-		console.log("Passing Values: ", document.getElementById("applicant_did").value)
-		var result = myContract.methods.verify_applicant_full(document.getElementById("applicant_did").value).call(function (err, result) {
+		console.log("Passing Values: ", did)
+		var result = myContract.methods.verify_applicant_full(did).call(function (err, result) {
 		console.log("result: ", result);
 
 			if (err) { 
 				console.log(err); 
-				var result = myContract.methods.verify_applicant_partial(document.getElementById("applicant_id").value).call(function (err, result) {
+				var result = myContract.methods.verify_applicant_partial(did).call(function (err, result) {
 				console.log("result: ", result);
 				if (result) { 
 					document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant City: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant State: </td> <td> " + result[3] + " </div></td> </tr> </table>";				

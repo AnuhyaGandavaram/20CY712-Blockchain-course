@@ -121,7 +121,7 @@ Description: Applicant Details Updation Page
 		//call the "update_applicant" function
 		console.log("Passing values: ", did, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value );
 
-		var result = myContract.methods.update_applicant(did, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
+		var result = myContract.methods.update_applicant(did, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value ).send(function (err, result) {
 				
 			console.log("Result: ", result);
 			if (err) { console.log(err); }

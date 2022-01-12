@@ -113,8 +113,8 @@ Description: Verify Applicant Details Page
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 												
 		//call the "verify_applicant_full" function
-		console.log("Passing Values: ", document.getElementById("applicant_id").value)
-		var result = myContract.methods.verify_applicant_full(document.getElementById("applicant_id").value).call(function (err, result) {
+		console.log("Passing Values: ", document.getElementById("applicant_did").value)
+		var result = myContract.methods.verify_applicant_full(document.getElementById("applicant_did").value).call(function (err, result) {
 		console.log("result: ", result);
 
 			if (err) { 

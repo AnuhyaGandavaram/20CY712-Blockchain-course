@@ -398,6 +398,19 @@ var abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "application_counter",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint32",
@@ -1187,6 +1200,6 @@ var abi = [
 		"type": "function"
 	}
 ];
-
+    
 //Smart Contract Address
-var contractaddress = '0xc0d8357706bc929e1f88a3e5659d6a1e7c8f3193';
+var contractaddress = '0xc0f461403496072739C5Ac6308BBBE577F2f9048';

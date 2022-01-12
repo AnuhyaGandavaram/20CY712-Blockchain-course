@@ -146,7 +146,7 @@ Description: Apply GI -->
 
 			var merkleroot = 0; //createMerkleTree(geoh)[1];
 
-			var application_id = 20220005;
+			var application_id;
 
 			// Last Application Number Retrieved from the chain
 			console.log("Getting application ID from chain");
@@ -155,8 +155,6 @@ Description: Apply GI -->
 				if (err) { console.log(err); }
 				if (result) { application_id = year + "" + get_application_id_result[0]; }
 			});
-			
-			application_id = 20220005;
 
 			//call the "apply_gi" function
 			console.log("Passing Values: ", application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)

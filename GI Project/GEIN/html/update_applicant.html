@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 10 Jan 2022
+Updated Date: 12 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Applicant Details Updation Page
 -->
@@ -58,7 +58,7 @@ Description: Applicant Details Updation Page
 		<p>
 		<form>
 			<table>
-			 <tr><td> Applicant ID : </td> <td> <input type="text" id="applicant_id" name="applicant_id"> </td></tr>
+			 <tr><td> Applicant DID : </td> <td> <div id="applicant_did"> </td> <td> <input type="button" onclick="verify_applicant()" value="Fetch" > </td></tr>
 			 <tr><td> Name : </td> <td> <input type="text" id="applicant_name" name="applicant_name"> </td></tr>
 			 <tr><td> Address : </td> <td> <input type="text" id="applicant_address" name="applicant_address"> </td></tr>
 			 <tr><td> E-Mail : </td> <td> <input type="text" id="applicant_email" name="applicant_email"> </td></tr>
@@ -71,10 +71,10 @@ Description: Applicant Details Updation Page
 	</p>	
 	</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
-    <script src="../js/gein.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+    	<script src="../js/gein.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
-    <script>	
+    	<script>	
 	var account;
 	window.addEventListener('load', async () => {
 
@@ -104,7 +104,8 @@ Description: Applicant Details Updation Page
 			console.log('Non-Ethereum browser detected. Please install MetaMask');
 			alert('Non-Ethereum browser detected. Please install MetaMask');
 		}
-			
+		document.getElementById("applicant_did").innerHTML = "did:avvcyber:eth-ropsten:" + account;
+
 	});
 
 	// Function to call the "update_applicant" in Deployed Smart Contract
@@ -116,9 +117,9 @@ Description: Applicant Details Updation Page
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 							
 		//call the "update_applicant" function
-		console.log("Passing values: ",document.getElementById("applicant_id").value, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value );
+		console.log("Passing values: ",document.getElementById("applicant_did").value, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value );
 
-		var result = myContract.methods.update_applicant(document.getElementById("applicant_id").value, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
+		var result = myContract.methods.update_applicant(document.getElementById("applicant_did").value, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
 				
 			console.log("Result: ", result)
 			if (err) { console.log(err); }
@@ -126,6 +127,33 @@ Description: Applicant Details Updation Page
 								
 		});
 					
+	}
+		function verify_applicant() {
+					
+		console.log("Getting Applicant details");
+						
+		//Instantiate and connect to contract address via ABI
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+								
+		//var applicant_id = 1;
+				
+		//call the "verify applicant" function
+		console.log("Passing Values: ", document.getElementById("applicant_did").value)
+		var result = myContract.methods.verify_applicant_full(document.getElementById("applicant_did").value).call(function (err, result) {
+			console.log("result: ", result);
+
+			if (err) { console.log(err); }
+			if (result) { 
+				document.getElementById("applicant_name").innerHTML = result[0]; 
+				document.getElementById("applicant_address").innerHTML = result[1];
+				document.getElementById("applicant_email").innerHTML = result[2];
+				document.getElementById("applicant_phone").innerHTML = result[3];
+				document.getElementById("applicant_city").innerHTML = result[4];
+				document.getElementById("applicant_state").innerHTML = result[5];
+			}
+			if (result[0] != '') {document.getElementById("apply").disabled = false; }
+		});
+				
 	}
 		
     </script>

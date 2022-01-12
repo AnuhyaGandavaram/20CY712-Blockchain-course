@@ -178,7 +178,7 @@ Description: Apply GI -->
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 												
 		//call the "verify applicant" function
-		console.log("Passing Values: ", document.getElementById("applicant_id").value)
+		console.log("Passing Values: ", did)
 		var result = myContract.methods.verify_applicant_full(did).call(function (err, result) {
 			console.log("result: ", result);
 

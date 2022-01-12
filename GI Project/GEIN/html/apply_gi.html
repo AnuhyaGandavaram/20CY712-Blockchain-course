@@ -142,9 +142,9 @@ Description: Apply GI -->
 			var geoh = toGeoHash(document.getElementById("lat_of_region").value, document.getElementById("long_of_region").value, 6);
 
 			// Compute the Merkle Root by generating the MerkleTree 
-			var merkletree = createMerkleTree(geoh)[0];
+			var merkletree = 0; //createMerkleTree(geoh)[0];
 
-			var merkleroot = createMerkleTree(geoh)[1];
+			var merkleroot = 0; //createMerkleTree(geoh)[1];
 
 			var application_id;
 
@@ -235,20 +235,20 @@ Description: Apply GI -->
 		}
 
 		const leaves = ['Ramaguru R', 'Thambi', 'Molu', 'Ammu', 'Una']
-		const leavesmap = leaves.map(x => SHA256(x))
+		//const leavesmap = leaves.map(x => SHA256(x))
 		const leaf = 'Una'
 
-		treeroot = createMerkleTree(leaves, leavesmap);
-		console.log(checkMerkleTree(leaf,treeroot[1], treeroot[0]));
-		printTree(treeroot[0]);
+		//treeroot = createMerkleTree(leaves, leavesmap);
+		//console.log(checkMerkleTree(leaf,treeroot[1], treeroot[0]));
+		//printTree(treeroot[0]);
 		
 		lat = 10.898061;
         lng = 76.90031;
 		geohash = toGeoHash(lat, lng, 10);
 		geohashList = ['8a603148880ffff','8a603148880fffa','8a603148880ffas','8a603148880acb']
 		console.log(geohash);
-		const geohashmap = geohashList.map(x => SHA256(x))
-		console.log(geohashList,geohashmap)
+		//const geohashmap = geohashList.map(x => SHA256(x))
+		//console.log(geohashList,geohashmap)
 	</script>
 	<script>
 		// Author : Ramaguru Radhakrishnan

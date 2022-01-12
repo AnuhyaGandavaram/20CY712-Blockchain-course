@@ -66,7 +66,7 @@ Description: Register Applicant Page (New User Creation Page)
 			 <tr><td> State : </td> <td> <input type="text" id="applicant_state" name="applicant_state" size="24" maxLength="24" required> </td></tr>
 			 <tr><td> <input type="button" onclick="register_applicant()" value="Register"></td></tr>
 			</table>
-			<p> <center> <div id="did"></div> </center></p>
+			<p style"color:blue;"> <center> <div id="did"></div> </center></p>
 		</form>
 	</p>	
 	</div>
@@ -124,7 +124,7 @@ Description: Register Applicant Page (New User Creation Page)
 				
 			console.log("Result: ", result);
 			if (err) { console.log(err); }
-			if (result) { document.getElementById.("did").innerHTML += "Registration Initiated. Your DID is:" + applicant_did; }
+			if (result) { document.getElementById("did").innerHTML += "Registration Initiated. Your DID is:" + applicant_did; }
 								
 		});
 					

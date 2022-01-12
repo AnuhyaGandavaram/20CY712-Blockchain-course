@@ -74,8 +74,10 @@ Description: Applicant Details Updation Page
     	<script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
     	<script src="../js/gein.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
-    	<script>	
+    	<script>
+		
 	var account;
+	var did;
 	window.addEventListener('load', async () => {
 
 		if (typeof window.ethereum !== 'undefined') { 
@@ -104,8 +106,8 @@ Description: Applicant Details Updation Page
 			console.log('Non-Ethereum browser detected. Please install MetaMask');
 			alert('Non-Ethereum browser detected. Please install MetaMask');
 		}
-		document.getElementById("applicant_did").innerHTML = "did:avvcyber:eth-ropsten:" + account;
-
+		did = "did:avvcyber:eth-ropsten:" + account
+		document.getElementById("applicant_did").innerHTML = did;
 	});
 
 	// Function to call the "update_applicant" in Deployed Smart Contract
@@ -117,11 +119,11 @@ Description: Applicant Details Updation Page
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 							
 		//call the "update_applicant" function
-		console.log("Passing values: ",document.getElementById("applicant_did").value, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value );
+		console.log("Passing values: ", did, document.getElementById("applicant_name").value, document.getElementById("applicant_address").value, document.getElementById("applicant_email").value, document.getElementById("applicant_phone").value, document.getElementById("applicant_city").value, document.getElementById("applicant_state").value );
 
-		var result = myContract.methods.update_applicant(document.getElementById("applicant_did").value, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
+		var result = myContract.methods.update_applicant(did, document.getElementById("applicant_names").value, document.getElementById("applicant_addresses").value ).send(function (err, result) {
 				
-			console.log("Result: ", result)
+			console.log("Result: ", result);
 			if (err) { console.log(err); }
 			if (result) { alert("Updation Initiated"); }
 								
@@ -138,8 +140,8 @@ Description: Applicant Details Updation Page
 		//var applicant_id = 1;
 				
 		//call the "verify applicant" function
-		console.log("Passing Values: ", document.getElementById("applicant_did").value)
-		var result = myContract.methods.verify_applicant_full(document.getElementById("applicant_did").value).call(function (err, result) {
+		console.log("Passing Values: ", did);
+		var result = myContract.methods.verify_applicant_full(did).call(function (err, result) {
 			console.log("result: ", result);
 
 			if (err) { console.log(err); }

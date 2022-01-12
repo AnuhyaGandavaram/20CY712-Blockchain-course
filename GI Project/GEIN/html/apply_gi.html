@@ -210,20 +210,20 @@ Description: Apply GI -->
 		{
 			console.log("***********************************************");
 			console.log("Creating Merkle Tree for the Leaves : ", leaves);
-			const tree = new MerkleTree(leavesmap, SHA256)
-			const root = tree.getRoot().toString('hex')
-			console.log("The computed root is ", root);
-			console.log("***********************************************");
-			return [tree, root];
+			//const tree = new MerkleTree(leavesmap, SHA256)
+			//const root = tree.getRoot().toString('hex')
+			//console.log("The computed root is ", root);
+			//console.log("***********************************************");
+			//return [tree, root];
 		}
 
 		function checkMerkleTree(leaf, root, tree)
 		{
 			console.log("***********************************************");
 			console.log("Checking Merkle Tree for the Leaf Node : ", leaf, " with root value ", root);
-			const leafhash = SHA256(leaf)
-			const proof = tree.getProof(leafhash)
-			return tree.verify(proof, leafhash, root);
+			//const leafhash = SHA256(leaf)
+			//const proof = tree.getProof(leafhash)
+			//return tree.verify(proof, leafhash, root);
 		}
 
 		function printTree(tree)

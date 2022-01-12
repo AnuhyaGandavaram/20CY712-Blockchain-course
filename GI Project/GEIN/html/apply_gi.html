@@ -159,7 +159,7 @@ Description: Apply GI -->
 			//call the "apply_gi" function
 			console.log("Passing Values: ", application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)
 
-			var result = myContract.methods.apply_gi(application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("regions").value, document.getElementById("previous_application_number").value).send(function (err, result) {
+			var result = myContract.methods.apply_gi(application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value).send(function (err, result) {
 
 				console.log("Result: ", result)
 

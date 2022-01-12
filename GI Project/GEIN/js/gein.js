@@ -1189,4 +1189,4 @@ var abi = [
 ]
 
 //Smart Contract Address
-var contractaddress "0xc0d8357706bc929e1f88a3e5659d6a1e7c8f3193";
+var contractaddress = "0xc0d8357706bc929e1f88a3e5659d6a1e7c8f3193";

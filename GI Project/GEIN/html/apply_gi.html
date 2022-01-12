@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 11 Jan 2022
+Updated Date: 12 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Apply GI -->
 <!DOCTYPE html>
@@ -56,7 +56,7 @@ Description: Apply GI -->
 	  </br></br>             
 		<p>
 		<form>
-			<table> <tr><td> Applicant ID: </td> <td> <div id="applicant_did"> </td> <td> <input type="button" onclick="verify_applicant()" value="Verify" ></td> </tr>
+			<table> <tr><td> Applicant DID: </td> <td> <div id="applicant_did"> </td> <td> <input type="button" onclick="verify_applicant()" value="Verify" ></td> </tr>
 			<tr><td> Applicant Name: </td> <td> <div id="applicant_name"></div></td> </tr>
  			 <tr><td> Applicant Address: </td> <td> <div id="applicant_address"></div></td> </tr>
  			 <tr><td> Applicant Email: </td> <td> <div id="applicant_email"></div></td> </tr>
@@ -127,10 +127,7 @@ Description: Apply GI -->
 		
 		const date = new Date();
 		let year = date.getFullYear();
-		
-		// Last Application Number Retrieved and increment from the chain
-		application_id = year + ""; 
-						
+								
 		//Instantiate and connect to contract address via ABI
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 				
@@ -138,14 +135,24 @@ Description: Apply GI -->
 		var geoh = toGeoHash(document.getElementById("lat_of_region").value, document.getElementById("long_of_region").value, 6);
 				
 		// Compute the Merkle Root by generating the MerkleTree 
-		merkletree = createMerkleTree(geoh)[0];
+		var merkletree = createMerkleTree(geoh)[0];
 		
-		merkleroot = createMerkleTree(geoh)[1];
-			
+		var merkleroot = createMerkleTree(geoh)[1];
+		
+		var application_id;
+		
+		// Last Application Number Retrieved from the chain
+		console.log("Getting application ID from chain");
+		var get_application_id_result = myContract.methods.getApplicationID().call(function (err, result) {
+			console.log("Result: ", get_application_id_result);
+			if (err) { console.log(err); }
+			if (result) { application_id = year + "" + get_application_id_result[0]; }
+		});
+
 		//call the "apply_gi" function
-		console.log("Passing Values: ", application_id, document.getElementById("applicant_id").value, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)
+		console.log("Passing Values: ", application_id, document.getElementById("applicant_did").value, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)
 	
-		var result = myContract.methods.apply_gi(application_id, document.getElementById("applicant_id").value, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, merkleroot, merkletree, document.getElementById("regions").value, document.getElementById("previous_application_number").value).send(function (err, result) {
+		var result = myContract.methods.apply_gi(application_id, document.getElementById("applicant_id").value, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("regions").value, document.getElementById("previous_application_number").value).send(function (err, result) {
 				
 			console.log("Result: ", result)
 				

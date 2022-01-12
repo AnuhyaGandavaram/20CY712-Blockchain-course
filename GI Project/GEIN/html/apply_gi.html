@@ -65,7 +65,7 @@ Description: Apply GI -->
  			 <tr><td> Applicant State: </td> <td> <div id="applicant_state"></div></td> </tr>
 			 <tr><td> Product Name: </td> <td> <input type="text" id="name" name="name" size="40" maxLength="40" required> </td></tr>
 			 <tr><td> Product Description: </td> <td> <input type="text" id="description" name="description" size="100" maxLength="100" required> </td></tr>
-			 <tr><td> Class of the Product: </td> <td> <input type="range" id="class" name="class" min="1" max="45"> </td></tr>
+			 <tr><td> Class of the Product: </td> <td> <input type="range" id="class" name="class" min="1" max="34" oninput="document.getElementById('rangeValLabel').innerHTML = this.value;"> <em id="rangeValLabel" style="font-style: normal;"></em> </td></tr>
 			 <tr><td> Category of the Product: </td> <td> <select id="category" name="category"><option value=0></option><option value=1>Food</option> <option value=2>Handicrafts</option> <option value=3>Agriculture</option> <option value=4>Manufactured</option> <option value=5>Natural</option> </select></td></tr>
 			 <tr><td> Latitude of Region of Produce: </td> <td> <input type="text" id="lat_of_region" name="lat_of_region" required></td></tr>
 			 <tr><td> Longitude of Region of Produce: </td> <td> <input type="text" id="long_of_region" name="long_of_region" required></td></tr>

@@ -126,7 +126,7 @@ Description: Apply GI -->
 	// Function to call the "apply_gi" in Deployed Smart Contract
 	function apply_gi(){
 		
-		if(document.getElementById("category") == 0 || document.getElementById("export") == 0){
+		if(document.getElementById("category").value == 0 || document.getElementById("export").value == 0){
 			alert("Category or Export status can not be empty");
 		}
 		else{	

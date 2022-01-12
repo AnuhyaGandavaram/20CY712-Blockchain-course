@@ -113,7 +113,7 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					console.log("Passing Values: ", wallet_address);
 
 					//call the "add_admin" function
-					var result = myContract.methods.add_admin(wallet_address).send(function (err, result) {
+					var result = myContract.methods.addAdmin(wallet_address).send(function (err, result) {
 					if (err) { console.log(err); }
 					if (result) { 
 						console.log("Result: ", result);
@@ -127,7 +127,7 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					console.log("Passing Values: ", wallet_address);
 
 					//call the "add_gir" function
-					var result = myContract.methods.add_gir(wallet_address).send(function (err, result) {
+					var result = myContract.methods.addGIR(wallet_address).send(function (err, result) {
 					if (err) { console.log(err); }
 					if (result) { 
 						console.log("Result: ", result);
@@ -141,7 +141,7 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					console.log("Passing Values: ", wallet_address);
 
 					//call the "add_qc" function
-					var result = myContract.methods.add_qc(wallet_address).send(function (err, result) {
+					var result = myContract.methods.addQC(wallet_address).send(function (err, result) {
 					if (err) { console.log(err); }
 					if (result) { 
 						console.log("Result: ", result);
@@ -155,7 +155,7 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					console.log("Passing Values: ", wallet_address);
 
 					//call the "add_publisher" function
-					var result = myContract.methods.add_publisher(wallet_address).send(function (err, result) {
+					var result = myContract.methods.addPublisher(wallet_address).send(function (err, result) {
 					if (err) { console.log(err); }
 					if (result) { 
 						console.log("Result: ", result);

@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 11 Jan 2022
+Updated Date: 12 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Verify Applicant Details Page
 -->
@@ -58,23 +58,18 @@ Description: Verify Applicant Details Page
 		<p>
 		<form>
 			<table>
-			 <tr><td> Applicant ID : </td> <td> <input type="text" id="applicant_id" name="applicant_id"> </td><td> <input type="button" onclick="verify_applicant()" value="View"></td></tr>
-			 <tr><td> Name: <div id="applicant_name"></div></td></tr>
-			 <tr><td> Address: <div id="applicant_address"></div></td></tr>
-			 <tr><td> City: <div id="applicant_city"></div></td></tr>
-			 <tr><td> State: <div id="applicant_state"></div></td></tr>
-			 <tr><td> E-Mail: <div id="applicant_email"></div></td></tr>
-			 <tr><td> Phone: <div id="applicant_phone"></div></td></tr>
+			 <tr><td> Applicant DID : </td> <td> <div id="applicant_did"> </td> <td> <input type="button" onclick="verify_applicant()" value="View" > </td></tr>
+			<tr><td> <div id="result"></div></td></tr>
 			</table>			
 		</form>
 		<br/><br/>
 	</p>	
 	</div>
 	
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
-    <script src="../js/gein.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+    	<script src="../js/gein.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
-    <script>	
+    	<script>	
 	
 	var account;
 	window.addEventListener('load', async () => {
@@ -105,6 +100,7 @@ Description: Verify Applicant Details Page
 			console.log('Non-Ethereum browser detected. Please install MetaMask');
 			alert('Non-Ethereum browser detected. Please install MetaMask');
 		}
+		document.getElementById("applicant_did").innerHTML = "did:avvcyber:eth-ropsten:" + account;
 	});
 						
 
@@ -126,20 +122,12 @@ Description: Verify Applicant Details Page
 				var result = myContract.methods.verify_applicant_partial(document.getElementById("applicant_id").value).call(function (err, result) {
 				console.log("result: ", result);
 				if (result) { 
-					document.getElementById("applicant_name").innerHTML = result[0]; 
-					document.getElementById("applicant_address").innerHTML = result[1]; 
-					document.getElementById("applicant_city").innerHTML = result[2]; 
-					document.getElementById("applicant_state").innerHTML = result[3]; 				
+					document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant City: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant State: </td> <td> " + result[3] + " </div></td> </tr> </table>";				
 				}
 			});
 			}
 			if (result) { 
-				document.getElementById("applicant_name").innerHTML = result[0]; 
-				document.getElementById("applicant_address").innerHTML = result[1]; 
-				document.getElementById("applicant_email").innerHTML = result[2]; 
-				document.getElementById("applicant_phone").innerHTML = result[3]; 
-				document.getElementById("applicant_city").innerHTML = result[4]; 
-				document.getElementById("applicant_state").innerHTML = result[5]; 
+				document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant Email: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant Phone: </td> <td> " + result[3] + " </div></td> </tr> <tr><td> Applicant City: </td> <td> " + result[4] + "</td> </tr> <tr><td> Applicant State: </td> <td> " + result[5] + " </td> </tr> </table>"; 
 			}				
 		});
 				

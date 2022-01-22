@@ -1,7 +1,8 @@
+
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 12 Jan 2022
+Updated Date: 22 Jan 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Apply GI -->
 <!DOCTYPE html>
@@ -129,12 +130,13 @@ Description: Apply GI -->
 		if(document.getElementById("category").value == 0 || document.getElementById("export").value == 0){
 			alert("Category or Export status can not be empty");
 		}
-		else{	
+		else{
 			console.log("Applying for GI");
 
 			const date = new Date();
-			let year = date.getFullYear();
-
+			var year = date.getFullYear();
+			var application_id;
+			
 			//Instantiate and connect to contract address via ABI
 			var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 
@@ -146,26 +148,23 @@ Description: Apply GI -->
 
 			var merkleroot = 0; //createMerkleTree(geoh)[1];
 
-			var application_id;
+			myContract.methods.getApplicationID().call().then(id =>{ 
+				console.log("ID: ", id);
+				id = ("000" + id).slice(-4); 
+				application_id = year.toString() + id;
+				console.log("Application ID:", application_id);			
 
-			// Last Application Number Retrieved from the chain
-			console.log("Getting application ID from chain");
-			var get_application_id_result = myContract.methods.getApplicationID().call(function (err, result) {
-				console.log("Result: ", get_application_id_result);
-				if (err) { console.log(err); }
-				if (result) { application_id = year + "" + get_application_id_result[0]; }
-			});
+				//call the "apply_gi" function
+				console.log("Passing Values: ", application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)
 
-			//call the "apply_gi" function
-			console.log("Passing Values: ", application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)
+				var result = myContract.methods.apply_gi(application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value).send(function (err, result) {
 
-			var result = myContract.methods.apply_gi(application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value).send(function (err, result) {
+					console.log("Result: ", result)
 
-				console.log("Result: ", result)
+					if (err) { console.log(err); }
+					if (result) { document.getElementById("application_id").innerHTML += "Application Initiated. Your application ID is - " + application_id; }
 
-				if (err) { console.log(err); }
-				if (result) { document.getElementById("application_id").innerHTML += "Application Initiated. Your application ID is - " + application_id; }
-
+				});
 			});
 		}			
 	}

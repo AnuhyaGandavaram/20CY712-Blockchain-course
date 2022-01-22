@@ -1,0 +1,38 @@
+# 12th Jan 2022
+
+Contract Address: [0xc0d8357706bc929e1f88a3e5659d6a1e7c8f3193](https://ropsten.etherscan.io/tx/0x6e8f1b724609d8b40e7d64dbedb370e6b6f3b9c05402866d9a7f3f29db67d7db)
+
+## Transactions
+
+Adding Admin 1 from Owner: [0x7e854e840704a0c4a78af31e250b895d1b238df2beae97d6cfff547bfc56e9c5](https://ropsten.etherscan.io/tx/0x7e854e840704a0c4a78af31e250b895d1b238df2beae97d6cfff547bfc56e9c5)
+Adding Admin 3 from Admin 1: [0x6ced27210f4f4d3c015f257014217f9ab93a43dca58201630b7497dd6f9a8dce](https://ropsten.etherscan.io/tx/0x6ced27210f4f4d3c015f257014217f9ab93a43dca58201630b7497dd6f9a8dce)
+Adding Admin 4 from Admin 3: [0x81716e94464cffbfd7ea4e9fe00c7257e9d8efa9df8a1b1a03fcf7d5e54205e9](https://ropsten.etherscan.io/tx/0x81716e94464cffbfd7ea4e9fe00c7257e9d8efa9df8a1b1a03fcf7d5e54205e9)
+Adding Admin 2 from Admin 4: [0xf32cee75164e5f500eb8b4112267a66818082aca87b1f99a287481a4a9efcc9f](https://ropsten.etherscan.io/tx/0xf32cee75164e5f500eb8b4112267a66818082aca87b1f99a287481a4a9efcc9f)
+
+Adding GIR 1 from Admin 4: [0xf0538a2f4977e01b4077d629fecd246f05965880f16d55b6a781dd415247d846](https://ropsten.etherscan.io/tx/0xf0538a2f4977e01b4077d629fecd246f05965880f16d55b6a781dd415247d846)
+Adding GIR 2 from Admin 4: [0xcf25d1fafb99b01decff303f1d69b98aaec167965b04332188f1ea2815441f2e](https://ropsten.etherscan.io/tx/0xcf25d1fafb99b01decff303f1d69b98aaec167965b04332188f1ea2815441f2e)
+Adding GIR 3 from Admin 1: [0x0d82a389f4d7da2636ac46721d6e93abdef94c08cf7165a977b865414414f07c](https://ropsten.etherscan.io/tx/0x0d82a389f4d7da2636ac46721d6e93abdef94c08cf7165a977b865414414f07c)
+Adding GIR 4 from Admin 2: [0x07151206b8e0b003cd2f0a59dc9890990feadc32206e95745181ae83c5d2c730](https://ropsten.etherscan.io/tx/0x07151206b8e0b003cd2f0a59dc9890990feadc32206e95745181ae83c5d2c730)
+
+Adding Admin[s) from random address: [0xc271ce78b61508d8320bf7c1675eb7d245536e3b3efa76e426141c131a5ac193](https://ropsten.etherscan.io/tx/0xc271ce78b61508d8320bf7c1675eb7d245536e3b3efa76e426141c131a5ac193)
+
+Registering Applicant 1: [0xcd1e3f3efa8863b7d9b5777f1b51787f007db509d147c828a689c3fde789285d](https://ropsten.etherscan.io/tx/0xcd1e3f3efa8863b7d9b5777f1b51787f007db509d147c828a689c3fde789285d)
+Registering Applicant 1: [0x62a078da547be82ee0ab6a931d56a8de1eab9f7aa8b53140d62122fbd519bcbe](https://ropsten.etherscan.io/tx/0x62a078da547be82ee0ab6a931d56a8de1eab9f7aa8b53140d62122fbd519bcbe)
+Registering Applicant 1: [0x89ef722865d9c4383a872c9ec2b3c041690beef98c1d93d570c4601dd8b25f8f](https://ropsten.etherscan.io/tx/0x89ef722865d9c4383a872c9ec2b3c041690beef98c1d93d570c4601dd8b25f8f)
+Registering Applicant 2: [0xf96fbfdcb1360db1f9b8ea3ca255c8842d59430903939b0e273b065fbe16099e](https://ropsten.etherscan.io/tx/0xf96fbfdcb1360db1f9b8ea3ca255c8842d59430903939b0e273b065fbe16099e)
+Registering Applicant 3: [0x0847c57ef57d55eb9d7c1be8f9ca5ea36c6a913836bc2375e9c02e1c2e377e86](https://ropsten.etherscan.io/tx/0x0847c57ef57d55eb9d7c1be8f9ca5ea36c6a913836bc2375e9c02e1c2e377e86)
+Registering Applicant 4: [0x3988c2e55b8fc1c62eaeafcc9076da6f3e09fa5a48593003723417cf9b354624](https://ropsten.etherscan.io/tx/0x3988c2e55b8fc1c62eaeafcc9076da6f3e09fa5a48593003723417cf9b354624)
+Registering Applicant 4: [0xdb7b86e74d96ab2237ebdbdd5e3d03c1f478c80aa4bc76f6715293b1b7bfcae4](https://ropsten.etherscan.io/tx/0xdb7b86e74d96ab2237ebdbdd5e3d03c1f478c80aa4bc76f6715293b1b7bfcae4#statechange)
+Registering Applicant 5: [0x8567a64dbc894c65f9300144a26755bf6e50970e115215bcf8ff45ae0d0bba85](https://ropsten.etherscan.io/tx/0x8567a64dbc894c65f9300144a26755bf6e50970e115215bcf8ff45ae0d0bba85)
+Registering Applicant 6: [0x0541aa34b73d8c6424c4ba38bb0ecfcbe3817171f903acb3e78c294081988806](https://ropsten.etherscan.io/tx/0x0541aa34b73d8c6424c4ba38bb0ecfcbe3817171f903acb3e78c294081988806)
+
+Updating Applicant 4: [0xde78e3795f90f38d9db943278614b65c0e9568d0585832d219259d6f0b8a4ec8](https://ropsten.etherscan.io/tx/0xde78e3795f90f38d9db943278614b65c0e9568d0585832d219259d6f0b8a4ec8)
+
+Applying GI from Applicant 4: [0xe269409f70a3455121d435882152dadb9ee1997225e1cb219681a4c2a4a87b45](https://ropsten.etherscan.io/tx/0xe269409f70a3455121d435882152dadb9ee1997225e1cb219681a4c2a4a87b45)
+Applying GI from Applicant 1: [0x8068c4f6d861ec1e7144c5ee8c0a57417fa22aced97e21db93d1d37cafff9786](https://ropsten.etherscan.io/tx/0x8068c4f6d861ec1e7144c5ee8c0a57417fa22aced97e21db93d1d37cafff9786)
+
+Approving GI of Applicant 4 from GIR 3: [0x96752e04597095f557fb89aeff8f240cddaa96ad3f5aeabed47ca2dfe19bfbc9](https://ropsten.etherscan.io/tx/0x96752e04597095f557fb89aeff8f240cddaa96ad3f5aeabed47ca2dfe19bfbc9)
+Approving GI of Applicant 1 from GIR 2: [0x94afd296d415556b410060c4d4eb38c0a0452b10edd7a1f0061c299c8d8fde6a)[https://ropsten.etherscan.io/tx/0x94afd296d415556b410060c4d4eb38c0a0452b10edd7a1f0061c299c8d8fde6a)
+
+Revoking non-existent GI: (0xcb02ad59c5740190cb5571bbd9fb26197acdb38871fb1ad020567cae0d038b8f)[https://ropsten.etherscan.io/tx/0xcb02ad59c5740190cb5571bbd9fb26197acdb38871fb1ad020567cae0d038b8f)
+Revoking GI: (0x2bde35e4e7df31fc0ffa48af5ab017db3b3378bcad2e04b2fa81466fbff693ef)[https://ropsten.etherscan.io/tx/0x2bde35e4e7df31fc0ffa48af5ab017db3b3378bcad2e04b2fa81466fbff693ef)

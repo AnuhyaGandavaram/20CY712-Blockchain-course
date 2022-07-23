@@ -2,7 +2,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 22 Jan 2022
+Updated Date: 19 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Apply GI -->
 <!DOCTYPE html>
@@ -23,17 +23,21 @@ Description: Apply GI -->
 <body>
   <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
     <div class="container">
-      <a href="about.html" class="navbar-brand">GEIN</a>
+      <a href="about.html" class="navbar-brand" style="color:white;">GEIN</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../index.html" class="nav-link" style="color:white;">Home</a>
           </li>
           <li class="nav-item">
-            <a href="journal.html" class="nav-link">Journal</a>
+            <a href="journal.html" class="nav-link" style="color:white;">Journal</a>
+            </li>
           <li class="nav-item">
-            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link">Github</a>
+            <a href="GIS.html" class="nav-link" style="color:white;">GIS</a>
+          </li> 
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link" style="color:white;">Github</a>
           </li>   
         </ul>
       </div>
@@ -68,8 +72,7 @@ Description: Apply GI -->
 			 <tr><td> Product Description: </td> <td> <input type="text" id="description" name="description" size="100" maxLength="100" required> </td></tr>
 			 <tr><td> Class of the Product: </td> <td> <input type="range" id="class" name="class" min="1" max="34" oninput="document.getElementById('rangeValLabel').innerHTML = this.value;"> <em id="rangeValLabel" style="font-style: normal;"></em> </td></tr>
 			 <tr><td> Category of the Product: </td> <td> <select id="category" name="category"><option value=0></option><option value=1>Food</option> <option value=2>Handicrafts</option> <option value=3>Agriculture</option> <option value=4>Manufactured</option> <option value=5>Natural</option> </select></td></tr>
-			 <tr><td> Latitude of Region of Produce: </td> <td> <input type="text" id="lat_of_region" name="lat_of_region" required></td></tr>
-			 <tr><td> Longitude of Region of Produce: </td> <td> <input type="text" id="long_of_region" name="long_of_region" required></td></tr>
+			 <tr><td> Latitude & Longitude of Regions of Produce: </td> <td> <input type="text" id="lat_long_of_regions" name="lat_long_of_regions" value="lat,long;lat,long;lat,long;" onload='document.getElementById("lat_long_of_regions").value = ""' required></td> </tr>
 			 <tr><td> Export: </td><td> <select id="export" name="export"><option value=0></option><option value=1>Yes</option><option value=2>No</option></td></tr>
 			 <tr><td> Previous Application Number: </td> <td> <input type="text" id="previous_application_number" name="previous_application_number" size="8" maxLength="8"> </td></tr>
 			 <tr><td> <input type="button" onclick="apply_gi()" value="Apply" id="apply" disabled="disabled"></td></tr>
@@ -81,10 +84,8 @@ Description: Apply GI -->
 
     <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
     <script src="../js/gein.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/merkletreejs@0.2.27/merkletree.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/crypto-js@3.3.0/sha256.js"></script>
-	<!--script src="https://cdn.jsdelivr.net/npm/h3-js@3.7.0/dist/h3-js.js"></script-->
 	<script src="https://unpkg.com/h3-js"></script>
 	<script>	
 	
@@ -141,12 +142,28 @@ Description: Apply GI -->
 			var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 
 			// Convert the Lat and Long to the corresponding geohash using the h3-js library
-			var geoh = toGeoHash(document.getElementById("lat_of_region").value, document.getElementById("long_of_region").value, 6);
+				
+			var lat_long_list = document.getElementById("lat_long_of_regions").value.split(";",10);	
+			var geoh_list = []	
+			console.log(lat_long_list.length)	
+			for (let i=0; i<lat_long_list.length-1; i++)	
+			{	
+				console.log(i)	
+				lat_long = lat_long_list[i].split(",",2)	
+				lat = lat_long[0]	
+				long_ = lat_long[1]	
+				var geoh = toGeoHash(lat, long_, 6);	
+				console.log(geoh)	
+				geoh_list.push(geoh)	
+			}	
 
-			// Compute the Merkle Root by generating the MerkleTree 
-			var merkletree = 0; //createMerkleTree(geoh)[0];
-
-			var merkleroot = 0; //createMerkleTree(geoh)[1];
+			// Compute the Merkle Root by generating the MerkleTree 	
+	
+			console.log(geoh_list);	
+			const geoh_list_map = geoh_list.map(x => sha256(x))	
+			var merkle = createMerkleTree(geoh_list, geoh_list_map);	
+			var merkletree = merkle[0]	
+			var merkleroot = merkle[1];	
 
 			myContract.methods.getApplicationID().call().then(id =>{ 
 				console.log("ID: ", id);
@@ -155,9 +172,9 @@ Description: Apply GI -->
 				console.log("Application ID:", application_id);			
 
 				//call the "apply_gi" function
-				console.log("Passing Values: ", application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)
+				console.log("Passing Values: ", application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh_list, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value)
 
-				var result = myContract.methods.apply_gi(application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh, merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value).send(function (err, result) {
+				var result = myContract.methods.apply_gi(application_id, did, document.getElementById("name").value, document.getElementById("description").value, document.getElementById("class").value, document.getElementById("category").value, geoh_list[0], merkleroot, merkletree, document.getElementById("export").value, document.getElementById("previous_application_number").value).send(function (err, result) {
 
 					console.log("Result: ", result)
 
@@ -194,91 +211,41 @@ Description: Apply GI -->
 		});
 				
 	}
-						
-    </script>
-	<script>
-		// Author : Ramaguru Radhakrishnan
-		// Date   : 08 Jan 2022 
-		// Merkle Tree Generation and Verification
-		// Install as "npm install merkletreejs"
-
-		//const { MerkleTree } = require('merkletreejs')
-		//const SHA256 = require('crypto-js/sha256')
-
-		function createMerkleTree(leaves, leavesmap)
-		{
-			console.log("***********************************************");
-			console.log("Creating Merkle Tree for the Leaves : ", leaves);
-			//const tree = new MerkleTree(leavesmap, SHA256)
-			//const root = tree.getRoot().toString('hex')
-			//console.log("The computed root is ", root);
-			//console.log("***********************************************");
-			//return [tree, root];
-		}
-
-		function checkMerkleTree(leaf, root, tree)
-		{
-			console.log("***********************************************");
-			console.log("Checking Merkle Tree for the Leaf Node : ", leaf, " with root value ", root);
-			//const leafhash = SHA256(leaf)
-			//const proof = tree.getProof(leafhash)
-			//return tree.verify(proof, leafhash, root);
-		}
-
-		function printTree(tree)
-		{
-			console.log("***********************************************");
-			console.log("Printing Merkle Tree...");
-			console.log(tree.toString());
-			console.log("***********************************************");
-		}
-
-		const leaves = ['Ramaguru R', 'Thambi', 'Molu', 'Ammu', 'Una']
-		//const leavesmap = leaves.map(x => SHA256(x))
-		const leaf = 'Una'
-
-		//treeroot = createMerkleTree(leaves, leavesmap);
-		//console.log(checkMerkleTree(leaf,treeroot[1], treeroot[0]));
-		//printTree(treeroot[0]);
-		
-		lat = 10.898061;
-        lng = 76.90031;
-		geohash = toGeoHash(lat, lng, 10);
-		geohashList = ['8a603148880ffff','8a603148880fffa','8a603148880ffas','8a603148880acb']
-		console.log(geohash);
-		//const geohashmap = geohashList.map(x => SHA256(x))
-		//console.log(geohashList,geohashmap)
-	</script>
-	<script>
-		// Author : Ramaguru Radhakrishnan
-		// Date   : 07 Jan 2022 
-		// GeoHash from H3
-		// Install as "npm install h3-js"
-
-		//const h3 = require("h3-js");
-
-		function toGeoHash(lat, lng, res) {
-		  // Example Lat and Long of Ettimadai, Coimbatore
-		  // const lat = 10.898061;
-		  // const lng = 76.90031;
-		  // const res = 10;
-		  return h3.geoToH3(lat, lng, res);
-		}
-
-		function fromGeoHash(h) {
-		  //const h = '8a603148880ffff';
-		  return h3.h3ToGeo(h);
-		}
-
-		function getBoundary(h) {
-		  //const h = '8a603148880ffff';
-		  return h3.h3ToGeoBoundary(h);
-		}
-
-		console.log("The Geo Hash of Ettimadai is ", toGeoHash("10.898061", "76.90031", "10"), "\n");
-		console.log("The Lat and Long of Ettimadai from GeoHash is ", fromGeoHash("8a603148880ffff"), "\n");
-		console.log("The Boundary Lat and Long for GeoHash is ", getBoundary("8a603148880ffff"), "\n");
-		
+	function createMerkleTree(leaves, leavesmap)
+	{
+		console.log("***********************************************");
+		console.log("Creating Merkle Tree for the Leaves : ", leaves);
+		const tree = new MerkleTree(leavesmap, sha256)
+		const root = tree.getRoot().toString('hex')
+		console.log("The computed root is ", root);
+		console.log("***********************************************");
+		return [tree, root];
+	}	
+	function checkMerkleTree(leaf, root, tree)	
+	{	
+		console.log("***********************************************");	
+		console.log("Checking Merkle Tree for the Leaf Node : ", leaf, " with root value ", root);	
+		const leafhash = sha256(leaf)	
+		const proof = tree.getProof(leafhash)	
+		return tree.verify(proof, leafhash, root);	
+	}	
+	function printTree(tree)	
+	{	
+		console.log("***********************************************");	
+		console.log("Printing Merkle Tree...");	
+		console.log(tree.toString());	
+		console.log("***********************************************");	
+	}	
+	
+	function toGeoHash(lat, lng, res) {		
+	  return h3.geoToH3(lat, lng, res);	
+	}	
+	function fromGeoHash(h) {	
+	  return h3.h3ToGeo(h);	
+	}	
+	function getBoundary(h) {	
+	  return h3.h3ToGeoBoundary(h);	
+	}	
 		
 	</script>
     </div>

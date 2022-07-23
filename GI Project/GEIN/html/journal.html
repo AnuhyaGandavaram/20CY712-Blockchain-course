@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 22 Jan 2022
+Updated Date: 19 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Journal Home Page
 -->
@@ -23,17 +23,21 @@ Description: Journal Home Page
 <body>
   <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
     <div class="container">
-      <a href="about.html" class="navbar-brand">GEIN</a>
+      <a href="about.html" class="navbar-brand" style="color:white;">GEIN</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../index.html" class="nav-link" style="color:white;">Home</a>
           </li>
           <li class="nav-item">
-            <a href="journal.html" class="nav-link">Journal</a>
+            <a href="journal.html" class="nav-link" style="color:white;">Journal</a>
+	  </li>
           <li class="nav-item">
-            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link">Github</a>
+            <a href="GIS.html" class="nav-link" style="color:white;">GIS</a>
+          </li> 
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link" style="color:white;">Github</a>
           </li>   
         </ul>
       </div>
@@ -61,7 +65,6 @@ Description: Journal Home Page
 				<form>
 				<table>
 					<tr><td> Journal ID: </td> <td> <input type="text" id="journal_id" name="journal_id"> </td><td> <input type="button" onclick="get_journal()" value="Get" id="get"></td></tr>
-					<tr><td><div id="ipfs_hash"></div></td></tr>
 				</table>	
 				</form>   
               <hr>
@@ -89,9 +92,13 @@ Description: Journal Home Page
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
   <script src="../js/slick.js"></script>
   <script src="../js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
+
   <script>	
 	
 	var account;
+
 	window.addEventListener('load', async () => {
 
 		if (typeof window.ethereum !== 'undefined') { 
@@ -136,11 +143,47 @@ Description: Journal Home Page
 		console.log("result: ", result);
 
 		if (err) { console.log(err); }
-		if (result) { document.getElementById("ipfs_hash").innerHTML = result[0]; }
+		if (result) { ipfs_add(result[0]); }
 		});
-				
 	}
-						
+	
+	//ipfs_fetch("QmRaiCxJPfrXaV4tNqFARGWmrj8d2WMtGUxD8xaezRq1LC");
+	
+	async function ipfs_fetch(ipfs_hash) {
+		const node = await Ipfs.create();
+		const chunks = [];
+		for await (const chunk of node.cat(ipfs_hash)) {
+			chunks.push(chunk);
+		}
+		console.log("IPFS contents:", chunks.toString());
+		create_pdf(chunks.toString());
+	}
+
+	function create_pdf(content) {
+	
+		//journalnumber = 1;
+		journalnumber = document.getElementById("journal_id").value;
+		var doc = new jsPDF();
+	
+		applications = content.split("\n");
+		for (let i=0; i<applications.length-1; i++)
+		{
+			
+			doc.setFontSize(20);
+			doc.setLineWidth(0.8);
+			lines = applications[i].split(", ");
+			doc.text(20, 20, lines[0]);
+			doc.line(20, 25, 190, 25);
+			doc.setFontSize(12);
+			for(i=1; i<lines.length; i++)
+			{
+				doc.text(20,25+i*8, lines[i]);
+			}
+			if (i < applications.length-2)
+				doc.addPage();
+		}
+	doc.save(journalnumber + '.pdf');
+}
     </script>
 </body>
 </html>

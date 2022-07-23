@@ -1,17 +1,17 @@
+
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 19 Jul 2022
+Updated Date: 22 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
-Description: Renew GI Status
--->
+Description: Publish Journal -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Renew GI| GEIN </title>
+  <title>Publish Journal | GEIN</title>
   <link rel="icon" type="x-icon" href="../images/GEIN.png">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
@@ -32,7 +32,7 @@ Description: Renew GI Status
           </li>
           <li class="nav-item">
             <a href="journal.html" class="nav-link" style="color:white;">Journal</a>
-	  </li>
+            </li>
           <li class="nav-item">
             <a href="GIS.html" class="nav-link" style="color:white;">GIS</a>
           </li> 
@@ -54,27 +54,32 @@ Description: Renew GI Status
     </div>
   </header>
 
-  <!-- RENEWAL SECTION -->
-  <section id="renew_gi" class="py-5">
+  <!-- APPLY SECTION -->
+  <section id="apply_gi" class="py-5">
     <div class="container">
-	  <h3 align="center">Renew GEIN</h3>
+	  <h3 align="center">Publish Journal</h3>
 	  </br></br>             
-       	<p>
+		<p>
 		<form>
-			<table>
-			 <tr><td> GEIN ID : </td> <td> <input type="text" id="application_id" name="application_id" size="8" maxLength="8" required> </td></tr>
-			 <tr><td> <input type="button" onclick="renew_gi()" value="Renew"></td></tr>
-			</table>			
+			<table> <tr><td> Journal ID: </td> <td> <div id="journal_id"> </td> <td> <input type="button" onclick="publish_journal()" value="Publish" id="publish" disabled="true"></td> </tr>
+			<tr><td> Application ID(s): </td> <td> <div id="application_ids"></div></td> </tr>
+			</table>	
+			<p> <center> <div ><a href="" id="ipfs_hash" target="_blank"></a></div> </center></p>
 		</form>
 	</p>	
 	</div>
 
     <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
     <script src="../js/gein.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
-    <script>	
+	<script>	
+	
+	const application_ids = [];
+	add_to_ipfs = "";
+	populate_journal_details();
 	
 	var account;
+	var did;
 	window.addEventListener('load', async () => {
 
 		if (typeof window.ethereum !== 'undefined') { 
@@ -102,31 +107,61 @@ Description: Renew GI Status
 		else {
 			console.log('Non-Ethereum browser detected. Please install MetaMask');
 			alert('Non-Ethereum browser detected. Please install MetaMask');
-		}
-	});
-			
-	// Function to call the "renew_gi" in Deployed Smart Contract
-	function renew_gi(){
-					
-		console.log("Renewing GI");
-						
+		}			
+	});	
+	
+	function populate_journal_details() {
+		console.log("Fetching Journal Details");
+		
 		//Instantiate and connect to contract address via ABI
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
-							
-		//call the "renew_gi" function
-		console.log("Passing values: ",document.getElementById("application_id").value );
-		
-		alert("You will be redirected to Payment Gateway. Payment Successful.");
 
-		var result = myContract.methods.renew_gi(document.getElementById("application_id").value ).send(function (err, result) {
-				
-			console.log("Result: ", result)
+		var result = myContract.methods.get_journal().call(function (err, result) {
+			console.log("result: ", result);
+
 			if (err) { console.log(err); }
-			if (result) { alert("Renewal Instantiate"); }
+			if (result) { 
+				document.getElementById("journal_id").innerHTML = result[0]; 
+				document.getElementById("application_ids").innerHTML = result[1];
+				application_ids = result[1];
+				document.getElementById("publish").disabled = false;
+			}
 		});
 	}
 	
-    </script>
+	// Function to call the "publish_journal" in Deployed Smart Contract
+	function publish_journal(){
+		
+		console.log("Publishing Journal");
+		
+		//Instantiate and connect to contract address via ABI
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+		
+		//call the "get_gi_details" function
+		for (let i=0; i<application_ids.length; i++)
+		{
+			console.log("Fetching Details of: ",application_ids[i]);
+			var result = myContract.methods.get_gi_details(application_ids[i]).call(function (err, result) {
+			console.log("Result: ", result)
+			if (err) { console.log(err); }
+			if (result) { 
+				add_to_ipfs += "Application ID: " + application_ids[i] + ", Applicant DID: "+result[0]+", Applicant Name: "+result[1]+", Applicant Email: "+result[2]+", Applicant State: "+result[4]+", Product Name: "+result[5]+", Product Description: "+result[6]+", Product Category: "+result[7]+", Product Exported: "+result[8]+"\n";
+			}
+			});
+		}
+		ipfs_add();
+	}
+
+	async function ipfs_add() {
+		const node = await Ipfs.create();
+		console.log(add_to_ipfs);
+		const cid = await node.add(add_to_ipfs);
+		console.log('CID created via ipfs.add:', cid.path);
+		document.getElementById("ipfs_hash").innerHTML += "Journal Published."
+		document.getElementById("ipfs_hash").href = "https://ipfs.io/ipfs/" + cid.path;
+	}
+	
+	</script>
     </div>
   </section>
 

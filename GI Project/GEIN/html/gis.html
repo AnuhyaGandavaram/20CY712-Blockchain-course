@@ -1,17 +1,17 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
-Created Date: 08 Jan 2022
+Created Date: 19 Jul 2022
 Updated Date: 19 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
-Description: Renew GI Status
+Description: ArcGIS JS API Integration to view the map 
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Renew GI| GEIN </title>
+  <title>Geographical View | GEIN</title>
   <link rel="icon" type="x-icon" href="../images/GEIN.png">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
@@ -32,13 +32,12 @@ Description: Renew GI Status
           </li>
           <li class="nav-item">
             <a href="journal.html" class="nav-link" style="color:white;">Journal</a>
-	  </li>
-          <li class="nav-item">
+	  <li class="nav-item">
             <a href="GIS.html" class="nav-link" style="color:white;">GIS</a>
-          </li> 
+          </li>  
           <li class="nav-item">
             <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link" style="color:white;">Github</a>
-          </li>   
+          </li>   	
         </ul>
       </div>
     </div>
@@ -49,31 +48,78 @@ Description: Renew GI Status
       <div class="row">
         <div class="col-md-6 m-auto text-center">
           <h1></h1>
+          <p></p>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- RENEWAL SECTION -->
-  <section id="renew_gi" class="py-5">
-    <div class="container">
-	  <h3 align="center">Renew GEIN</h3>
-	  </br></br>             
-       	<p>
-		<form>
-			<table>
-			 <tr><td> GEIN ID : </td> <td> <input type="text" id="application_id" name="application_id" size="8" maxLength="8" required> </td></tr>
-			 <tr><td> <input type="button" onclick="renew_gi()" value="Renew"></td></tr>
-			</table>			
-		</form>
-	</p>	
-	</div>
+ <div id="viewDiv"></div>	
 
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
-    <script src="../js/gein.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
-    <script>	
+   <footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
+        </div>
+      </div>
+    </div>
+  </footer>
 	
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">	
+  <script src="https://js.arcgis.com/4.24/"></script>
+  <script>
+    require([
+      "esri/config",
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/widgets/ScaleBar",
+      "esri/widgets/Legend"
+
+    ], function(esriConfig, WebMap, MapView, ScaleBar, Legend) {
+
+      esriConfig.apiKey = "AAPKd9bbf0ea33b040d28c978eda026c4ffdZwxsf-nP3zjIKVjICNcDR_pUZiYW3kCSWvOfn22iBPuCjayQ44hT0iKb6Io5KZh-";
+
+      const webmap = new WebMap({
+        portalItem: {
+          id: "41281c51f9de45edaf1c8ed44bb10e30"
+        }
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: webmap
+
+      });
+
+      const scalebar = new ScaleBar({
+        view: view
+      });
+
+      view.ui.add(scalebar, "bottom-left");
+
+      const legend = new Legend ({
+        view: view
+      });
+      view.ui.add(legend, "top-right");
+
+  });
+  </script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
+  <script src="../js/slick.js"></script>
+  <script src="../js/main.js"></script>
+  <script>	
 	var account;
 	window.addEventListener('load', async () => {
 
@@ -104,49 +150,8 @@ Description: Renew GI Status
 			alert('Non-Ethereum browser detected. Please install MetaMask');
 		}
 	});
-			
-	// Function to call the "renew_gi" in Deployed Smart Contract
-	function renew_gi(){
-					
-		console.log("Renewing GI");
 						
-		//Instantiate and connect to contract address via ABI
-		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
-							
-		//call the "renew_gi" function
-		console.log("Passing values: ",document.getElementById("application_id").value );
-		
-		alert("You will be redirected to Payment Gateway. Payment Successful.");
-
-		var result = myContract.methods.renew_gi(document.getElementById("application_id").value ).send(function (err, result) {
-				
-			console.log("Result: ", result)
-			if (err) { console.log(err); }
-			if (result) { alert("Renewal Instantiate"); }
-		});
-	}
-	
     </script>
-    </div>
-  </section>
-
-
- <footer id="main-footer" class="text-center p-4">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-
-  <script src="../js/jquery.min.js"></script>
-  <script src="../js/popper.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
-  <script src="../js/slick.js"></script>
-  <script src="../js/main.js"></script>
+	
 </body>
 </html>

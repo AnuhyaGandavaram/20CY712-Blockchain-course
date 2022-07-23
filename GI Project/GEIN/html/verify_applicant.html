@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 22 Jan 2022
+Updated Date: 19 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Verify Applicant Details Page
 -->
@@ -23,17 +23,21 @@ Description: Verify Applicant Details Page
 <body>
   <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
     <div class="container">
-      <a href="about.html" class="navbar-brand">GEIN</a>
+      <a href="about.html" class="navbar-brand" style="color:white;">GEIN</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../index.html" class="nav-link" style="color:white;">Home</a>
           </li>
           <li class="nav-item">
-            <a href="journal.html" class="nav-link">Journal</a>
+            <a href="journal.html" class="nav-link" style="color:white;">Journal</a>
+	  </li>
           <li class="nav-item">
-            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link">Github</a>
+            <a href="GIS.html" class="nav-link" style="color:white;">GIS</a>
+          </li> 
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link" style="color:white;">Github</a>
           </li>   
         </ul>
       </div>
@@ -58,9 +62,10 @@ Description: Verify Applicant Details Page
 		<p>
 		<form>
 			<table>
-			 <tr><td> Applicant DID : </td> <td> <div id="applicant_did"> </td> <td> <input type="button" onclick="verify_applicant()" value="View" > </td></tr>
-			<tr><td> <div id="result"></div></td></tr>
-			</table>			
+			<tr><td>Applicant DID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td> <div id="applicant_did"> </td> <td> &nbsp;<input type="button" onclick="verify_applicant()" value="View" ></td></tr>
+			</table>
+			<div id="result"></div>
+						
 		</form>
 		<br/><br/>
 	</p>	
@@ -124,12 +129,12 @@ Description: Verify Applicant Details Page
 				var result = myContract.methods.verify_applicant_partial(did).call(function (err, result) {
 				console.log("result: ", result);
 				if (result) { 
-					document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant City: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant State: </td> <td> " + result[3] + " </div></td> </tr> </table>";				
+					document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant City: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant State: </td> <td> " + result[3] + "</td> </tr> </table>";				
 				}
 			});
 			}
 			if (result) { 
-				document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant Email: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant Phone: </td> <td> " + result[3] + " </div></td> </tr> <tr><td> Applicant City: </td> <td> " + result[4] + "</td> </tr> <tr><td> Applicant State: </td> <td> " + result[5] + " </td> </tr> </table>"; 
+				document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant Email: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant Phone: </td> <td> " + result[3] + " </td> </tr> <tr><td> Applicant City: </td> <td> " + result[4] + "</td> </tr> <tr><td> Applicant State: </td> <td> " + result[5] + " </td> </tr> </table>"; 
 			}				
 		});
 				

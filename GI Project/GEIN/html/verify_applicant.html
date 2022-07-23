@@ -126,12 +126,12 @@ Description: Verify Applicant Details Page
 
 			if (err) { 
 				console.log(err); 
-				var result = myContract.methods.verify_applicant_partial(did).call(function (err, result) {
-				console.log("result: ", result);
-				if (result) { 
-					document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant City: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant State: </td> <td> " + result[3] + "</td> </tr> </table>";				
-				}
-			});
+				//var result = myContract.methods.verify_applicant_partial(did).call(function (err, result) {
+				//console.log("result: ", result);
+				//if (result) { 
+				//	document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant City: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant State: </td> <td> " + result[3] + "</td> </tr> </table>";				
+				//}
+			//});
 			}
 			if (result) { 
 				document.getElementById("result").innerHTML += "<table><tr><td> Applicant Name: </td> <td> " + result[0] + " </td> </tr> <tr><td> Applicant Address: </td> <td> " + result[1] + " </td> </tr> <tr><td> Applicant Email: </td> <td> " + result[2] + " </td> </tr> <tr><td> Applicant Phone: </td> <td> " + result[3] + " </td> </tr> <tr><td> Applicant City: </td> <td> " + result[4] + "</td> </tr> <tr><td> Applicant State: </td> <td> " + result[5] + " </td> </tr> </table>"; 

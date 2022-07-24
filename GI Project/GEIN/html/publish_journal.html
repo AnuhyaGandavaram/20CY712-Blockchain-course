@@ -78,6 +78,7 @@ Description: Publish Journal -->
 	add_to_ipfs = "";
 	
 	var account;
+	var ipfs_hash;
 
 	window.addEventListener('load', async () => {
 
@@ -152,7 +153,7 @@ Description: Publish Journal -->
 			});
 		}
 		
-		var ipfs_hash = ipfs_add();
+		ipfs_add();
 		console.log("IPFS hash is: ", ipfs_hash);
 
 		//call the "publish_journal" function
@@ -171,7 +172,7 @@ Description: Publish Journal -->
 		console.log(add_to_ipfs);
 		const cid = await node.add(add_to_ipfs);
 		console.log('CID created via ipfs.add:', cid.path);
-		return cid.path;
+		ipfs_hash = cid.path;
 	}
 	
 	</script>

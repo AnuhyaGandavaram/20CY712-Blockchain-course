@@ -76,7 +76,6 @@ Description: Publish Journal -->
 	
 	const application_ids = [];
 	add_to_ipfs = "";
-	populate_journal_details();
 	
 	var account;
 
@@ -107,7 +106,10 @@ Description: Publish Journal -->
 		else {
 			console.log('Non-Ethereum browser detected. Please install MetaMask');
 			alert('Non-Ethereum browser detected. Please install MetaMask');
-		}			
+		}
+
+		populate_journal_details();
+
 	});	
 	
 	function populate_journal_details() {

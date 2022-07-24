@@ -34,7 +34,7 @@ Description: Journal Home Page
             <a href="journal.html" class="nav-link" style="color:white;">Journal</a>
 	  </li>
           <li class="nav-item">
-            <a href="GIS.html" class="nav-link" style="color:white;">GIS</a>
+            <a href="gis.html" class="nav-link" style="color:white;">GIS</a>
           </li> 
           <li class="nav-item">
             <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link" style="color:white;">Github</a>
@@ -75,26 +75,17 @@ Description: Journal Home Page
     </div>
   </section>
 
- <footer id="main-footer" class="text-center p-4">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-
   <script src="../js/jquery.min.js"></script>
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
   <script src="../js/slick.js"></script>
   <script src="../js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+  <script src="../js/gein.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>	
+
   <script>	
 	
 	var account;
@@ -184,8 +175,22 @@ Description: Journal Home Page
 			if (i < applications.length-2)
 				doc.addPage();
 		}
-	doc.save(journalnumber + '.pdf');
-}
+		doc.save(journalnumber + '.pdf');
+	}
     </script>
+	
+ <footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
 </body>
 </html>

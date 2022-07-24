@@ -74,6 +74,7 @@ Description: View GI Status -->
     	<script>	
 	
 	var account;
+	var did;
 	window.addEventListener('load', async () => {
 
 		if (typeof window.ethereum !== 'undefined') { 
@@ -101,7 +102,7 @@ Description: View GI Status -->
 		else {
 			console.log('Non-Ethereum browser detected. Please install MetaMask');
 		}
-			
+		did = "did:avvcyber:eth:" + account;
 	});
 			
 	// Function to call the "get_gi_status" in Deployed Smart Contract
@@ -157,10 +158,10 @@ Description: View GI Status -->
 		status = GI_STATUS.APPEALED;
 		status_change_reason = GI_STATUS_CHANGE_REASON.GIR_REJECTED;
 		
-		//call the "update_gi_status" function
-		console.log("Passing Values: ", document.getElementById("application_id").value, status, status_change_reason);
+		//call the "appeal_gi" function
+		console.log("Passing Values: ", did, document.getElementById("application_id").value, status, status_change_reason);
 
-		var result = myContract.methods.update_gi_status(document.getElementById("application_id").value, status, status_change_reason).send(function (err, result) {
+		var result = myContract.methods.appeal_gi(did, document.getElementById("application_id").value, status, status_change_reason).send(function (err, result) {
 		console.log("Result: ", result)
 				
 			if (err) { console.log(err); }

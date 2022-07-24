@@ -143,7 +143,7 @@ Description: Journal Home Page
 		console.log("result: ", result);
 
 		if (err) { console.log(err); }
-		if (result) { ipfs_add(result[0]); }
+		if (result) { ipfs_fetch(result[0]); }
 		});
 	}
 	

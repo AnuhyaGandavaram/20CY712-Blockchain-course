@@ -116,7 +116,7 @@ Description: Publish Journal -->
 		//Instantiate and connect to contract address via ABI
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 
-		var result = myContract.methods.get_journal().call(function (err, result) {
+		var result = myContract.methods.get_current_journal().call(function (err, result) {
 			console.log("result: ", result);
 
 			if (err) { console.log(err); }

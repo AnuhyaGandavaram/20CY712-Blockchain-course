@@ -151,7 +151,18 @@ Description: Publish Journal -->
 			}
 			});
 		}
-		ipfs_add();
+		
+		ipfs_hash = ipfs_add();
+
+		//call the "publish_journal" function
+		var result = myContract.methods.publish_journal(ipfs_hash).send(function (err, result) {
+			console.log("Result: ", result)
+			if (err) { console.log(err); }
+			if (result) { 
+				document.getElementById("ipfs_hash").innerHTML += "Journal Published."
+				document.getElementById("ipfs_hash").href = "https://ipfs.io/ipfs/" + ipfs_hash;			}
+		});
+		
 	}
 
 	async function ipfs_add() {
@@ -159,8 +170,7 @@ Description: Publish Journal -->
 		console.log(add_to_ipfs);
 		const cid = await node.add(add_to_ipfs);
 		console.log('CID created via ipfs.add:', cid.path);
-		document.getElementById("ipfs_hash").innerHTML += "Journal Published."
-		document.getElementById("ipfs_hash").href = "https://ipfs.io/ipfs/" + cid.path;
+		return cid.path;
 	}
 	
 	</script>

@@ -35,8 +35,8 @@
 |:---------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
 | **Name** | Radha S | Preethi G | Raj Kumar | Naveen Sundaram | Akshaya Ram | Vimal ET |
 | **Address** | 1-3-68, Trunk Road | 56/89, Gandhi Road| 45-7, Nehru Salai | 60-8/3, Patel Road | 58, Boss Gardens | 786-floor 4, Rosy Enclave, Lincon Road|
-| **Email ID** | s_radha@mailcom| preethi@mail.com | r_kumar@mail.com | n_sundaram@mail.com | ram_a@mail.com | etvimal@mail.com |
-| **Phone Number** | 98XXXXXX12 | 78XXXXXX56 | 76XXXXXX23 | 69XXXXXX78 | 96XXXXXX69 | 86XXXXXX67 |
+| **Email ID** | s_radha@mail.com| preethi@mail.com | r_kumar@mail.com | n_sundaram@mail.com | ram_a@mail.com | etvimal@mail.com |
+| **Phone Number** | 9800000012 | 7800000056 | 7600000023 | 6900000078 | 9600000069 | 8600000067 |
 | **City** | Tirupathi | Pathanamthitta | Dindigul | Banglore | Makrana | Pulwama |
 | **State** | Andhra Pradesh | Kerala | TamilNadu | Karnataka | Rajasthan | Kashmir |
 

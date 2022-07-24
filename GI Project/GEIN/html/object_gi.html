@@ -1,9 +1,9 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
-Created Date: 08 Jan 2022
-Updated Date: 19 Jul 2022
+Created Date: 24 Jul 2022
+Updated Date: 24 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
-Description: Revoking GI Status by GIR or QC -->
+Description: Objecting GI Status by GIR or QC -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@ Description: Revoking GI Status by GIR or QC -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Revoke | GEIN</title>
+  <title>Object | GEIN</title>
   <link rel="icon" type="x-icon" href="../images/GEIN.png">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
@@ -54,10 +54,10 @@ Description: Revoking GI Status by GIR or QC -->
     </div>
   </header>
 
-  <!-- Revoke GI SECTION -->
-  <section id="revoke_gi" class="py-5">
+  <!-- Object GI SECTION -->
+  <section id="object_gi" class="py-5">
     <div class="container">
-	  <h3 align="center">Revoke GI Status</h3>
+	  <h3 align="center">Object GI</h3>
 	  </br></br> 
 	  <p>
 		<form>
@@ -126,9 +126,9 @@ Description: Revoking GI Status by GIR or QC -->
     "OTHERS": 4,
 	};
 	
-	// Function to call the "revoke_gi" in Deployed Smart Contract
+	// Function to call the "object_gi" in Deployed Smart Contract
 	function object_gi(){
-		if (document.getElementById("revoke_reason").value == 0){
+		if (document.getElementById("object_reason").value == 0){
 			alert("Please select the reason for Objections");
 		}
 		else{
@@ -139,7 +139,7 @@ Description: Revoking GI Status by GIR or QC -->
 
 			console.log("Passing Values: ", document.getElementById("application_id").value, document.getElementById("objection_reason").value)
 
-			//call the "revoke_gi" function				
+			//call the "update_gi_status" function				
 			var result = myContract.methods.update_gi_status(document.getElementById("application_id").value, GI_STATUS.GIROBJECTION, document.getElementById("objection_reason").value).send(function (err, result) {
 
 				console.log("Result: ", result)

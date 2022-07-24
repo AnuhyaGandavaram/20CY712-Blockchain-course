@@ -160,18 +160,17 @@ Description: Journal Home Page
 	
 		applications = content.split("\n");
 		console.log("Total Applications: ",applications.length);
-		for (let i=0; i<applications.length; i++)
+		for (let i=0; i<applications.length-1; i++)
 		{
-			
 			doc.setFontSize(20);
 			doc.setLineWidth(0.8);
 			lines = applications[i].split(", ");
 			doc.text(20, 20, lines[0]);
 			doc.line(20, 25, 190, 25);
 			doc.setFontSize(12);
-			for(i=1; i<lines.length; i++)
+			for(j=1; j<lines.length; j++)
 			{
-				doc.text(20,25+i*8, lines[i]);
+				doc.text(20,25+i*8, lines[j]);
 			}
 			if (i < applications.length-2)
 				doc.addPage();

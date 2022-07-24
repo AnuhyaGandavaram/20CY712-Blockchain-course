@@ -64,7 +64,7 @@ Description: Journal Home Page
               <h3 class="text-center">Select the journal to view</h3>
 				<form>
 				<table>
-					<tr><td> Journal ID: </td> <td> <input type="text" id="journal_id" name="journal_id" size="4" maxLength="4" required> </td><td> <input type="button" onclick="get_journal()" value="Get" id="get"></td></tr>
+					<tr><td> Journal ID: </td> <td> <input type="text" id="journal_id" name="journal_id" size="4" maxLength="4" required> </td><td> <input type="button" onclick="fetch_journal()" value="Get" id="get"></td></tr>
 				</table>	
 				</form>   
               <hr>
@@ -130,21 +130,23 @@ Description: Journal Home Page
 			
 	});			
 
-	function get_journal() {
+	function fetch_journal() {
 					
 		console.log("Getting Journal Hash");
 
 		//Instantiate and connect to contract address via ABI
-		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
-												
-		//call the "get journal" function
-		console.log("Passing Values: ", document.getElementById("journal_id").value)
-		var result = myContract.methods.get_journal(document.getElementById("journal_id").value).call(function (err, result) {
-		console.log("result: ", result);
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});									
 
-		if (err) { console.log(err); }
-		if (result) { ipfs_fetch(result[1]); }
+		console.log("Passing Values: ", document.getElementById("journal_id").value)
+
+		//call the "get journal" function
+		var result = myContract.methods.get_journal(document.getElementById("journal_id").value).call(function (err, result) {
+			
+			console.log("Result: ", result);
+			if (err) { console.log(err); }
+			if (result) { ipfs_fetch(result[1]); }
 		});
+		
 	}
 	
 	//ipfs_fetch("QmRaiCxJPfrXaV4tNqFARGWmrj8d2WMtGUxD8xaezRq1LC");

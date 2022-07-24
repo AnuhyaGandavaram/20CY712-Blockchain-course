@@ -34,23 +34,23 @@
 | Parameter | Applicant 1 | Applicant 2 | Applicant 3 | Applicant 4 | Applicant 5 | Applicant 6 |
 |:---------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
 | Name | Radha S | Preethi G | Raj Kumar | Naveen Sundaram | Akshaya Ram | Vimal ET |
-| Address | 1-3-68, Trunk Road | 56/89, Gandhi Road| 45-7, Nehru Salai | 60-8/3, Patel Road | 58, Boss Gardens | |
-| Email ID |   | |  | |  | |
-| Phone Number |  | |  | |  | |
-| City |  | |  | |  | |
-| State |  | |  | |  | |
+| Address | 1-3-68, Trunk Road | 56/89, Gandhi Road| 45-7, Nehru Salai | 60-8/3, Patel Road | 58, Boss Gardens | 786-floor 4, Rosy Enclave, Lincon Road|
+| Email ID | s_radha@mailcom| preethi@mail.com | r_kumar@mail.com | n_sundaram@mail.com | ram_a@mail.com | etvimal@mail.com |
+| Phone Number | 98XXXXXX12 | 78XXXXXX56 | 76XXXXXX23 | 69XXXXXX78 | 96XXXXXX69 | 86XXXXXX67 |
+| City | Tirupathi | Pathanamthitta | Dindigul | Banglore | Makrana | Pulwama |
+| State | Andhra Pradesh | Kerala | TamilNadu | Karnataka | Rajasthan | Kashmir |
 
 #### Application
 
 | Parameter | Applicant 1 | Applicant 2 | Applicant 3 | Applicant 4 | Applicant 5 | Applicant 6 |
 |:---------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
-| Product Name | | |  | |  | |
-| Product Description |  | |  | |  | |
-| Class of Prod |   | |  | |  | |
-| Category of Prod |  | |  | |  | |
+| Product Name | Tirupathi Laddu | Aranmula Kannadi | Dindigul Locks | Bangalore Blue Grapes | Makrana Marble | Kashmir Saffron |
+| Product Description | Tirupathi Laddu | Aranmula Kannadi | Dindigul Locks | Bangalore Blue Grapes | Makrana Marble | Kashmir Saffron |
+| Class of Prod | 30 | 20 | 6 | 31 | 19 | 30 |
+| Category of Prod | Food | Handicraft | Manufactured | Agriculture | Natural | Agriculture |
 | Lat and Long |  | |  | |  | |
-| Export (Yes/No) |  | |  | |  | |
-| Previous Application Number |  | |  | |  | |
+| Export (Yes/No) | no | yes | yes | no | no | yes |
+| Previous Application Number | 0 | 0 | 0 | 0 | 0 | 20220003 |
 
 ## Transactions
 

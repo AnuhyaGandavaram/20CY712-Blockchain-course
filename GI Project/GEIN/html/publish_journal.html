@@ -152,7 +152,8 @@ Description: Publish Journal -->
 			});
 		}
 		
-		ipfs_hash = ipfs_add();
+		var ipfs_hash = ipfs_add();
+		console.log('IPFS hash is ', ipfs_hash);
 
 		//call the "publish_journal" function
 		var result = myContract.methods.publish_journal(ipfs_hash).send(function (err, result) {

@@ -1,121 +1,6 @@
 // Smart Contract ABI - Application Binary Interfaces
 var abi = [
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_admin_address",
-				"type": "address"
-			}
-		],
-		"name": "addAdmin",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_GIR_address",
-				"type": "address"
-			}
-		],
-		"name": "addGIR",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_publisher_address",
-				"type": "address"
-			}
-		],
-		"name": "addPublisher",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_QC_address",
-				"type": "address"
-			}
-		],
-		"name": "addQC",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_application_id",
-				"type": "uint32"
-			},
-			{
-				"internalType": "string",
-				"name": "_applicant_did",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_prod_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_prod_desc",
-				"type": "string"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_prod_class",
-				"type": "uint8"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_prod_cat",
-				"type": "uint8"
-			},
-			{
-				"internalType": "string[]",
-				"name": "_prod_geohash",
-				"type": "string[]"
-			},
-			{
-				"internalType": "string",
-				"name": "_prod_merkle_root",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_prod_merkle_tree",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "_prod_export",
-				"type": "bool"
-			},
-			{
-				"internalType": "string",
-				"name": "_prev_apl_number",
-				"type": "string"
-			}
-		],
-		"name": "apply_gi",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
@@ -169,68 +54,6 @@ var abi = [
 		],
 		"name": "ApprovalForAll",
 		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_application_id",
-				"type": "uint32"
-			}
-		],
-		"name": "approve_application",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_application_id",
-				"type": "uint32"
-			}
-		],
-		"name": "approve_gi",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_GEIN_id",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_status_change_reason",
-				"type": "uint8"
-			}
-		],
-		"name": "burnGEIN",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -426,42 +249,6 @@ var abi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_recipient_address",
-				"type": "address"
-			},
-			{
-				"internalType": "uint32",
-				"name": "_GEIN_id",
-				"type": "uint32"
-			}
-		],
-		"name": "mintGEIN",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_recipient_address",
-				"type": "address"
-			},
-			{
-				"internalType": "uint128",
-				"name": "_current_journal_id",
-				"type": "uint128"
-			}
-		],
-		"name": "mintJournal",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -475,60 +262,17 @@ var abi = [
 		"type": "event"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": false,
 				"internalType": "string",
-				"name": "_journal_ipfs_hash",
+				"name": "",
 				"type": "string"
 			}
 		],
-		"name": "publish_journal",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_applicant_did",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_address",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "uint40",
-				"name": "_phone",
-				"type": "uint40"
-			},
-			{
-				"internalType": "string",
-				"name": "_city",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_state",
-				"type": "string"
-			}
-		],
-		"name": "register_applicant",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "updatedApplicantDetails",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -538,7 +282,7 @@ var abi = [
 				"type": "address"
 			}
 		],
-		"name": "removeAdmin",
+		"name": "addAdmin",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -551,38 +295,7 @@ var abi = [
 				"type": "address"
 			}
 		],
-		"name": "removeGIR",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_application_id",
-				"type": "uint32"
-			}
-		],
-		"name": "renew_gi",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_gein_id",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_status_change_reason",
-				"type": "uint8"
-			}
-		],
-		"name": "revoke_gi",
+		"name": "addGIR",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -591,21 +304,11 @@ var abi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "from",
+				"name": "_publisher_address",
 				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
 			}
 		],
-		"name": "safeTransferFrom",
+		"name": "addPublisher",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -614,172 +317,14 @@ var abi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "from",
+				"name": "_QC_address",
 				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
 			}
 		],
-		"name": "safeTransferFrom",
+		"name": "addQC",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "approved",
-				"type": "bool"
-			}
-		],
-		"name": "setApprovalForAll",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint32",
-				"name": "_GEIN_id",
-				"type": "uint32"
-			}
-		],
-		"name": "transferGEIN",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_applicant_did",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_address",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "uint40",
-				"name": "_phone",
-				"type": "uint40"
-			},
-			{
-				"internalType": "string",
-				"name": "_city",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_state",
-				"type": "string"
-			}
-		],
-		"name": "update_applicant",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint32",
-				"name": "_application_id",
-				"type": "uint32"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_gi_status",
-				"type": "uint8"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_status_change_reason",
-				"type": "uint8"
-			}
-		],
-		"name": "update_gi_status",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"name": "updatedApplicantDetails",
-		"type": "event"
 	},
 	{
 		"inputs": [],
@@ -797,6 +342,108 @@ var abi = [
 	{
 		"inputs": [
 			{
+				"internalType": "uint32",
+				"name": "_application_id",
+				"type": "uint32"
+			},
+			{
+				"internalType": "string",
+				"name": "_applicant_did",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_prod_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_prod_desc",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_prod_class",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_prod_cat",
+				"type": "uint8"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_prod_geohash",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string",
+				"name": "_prod_merkle_root",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "_prod_export",
+				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "_prev_apl_number",
+				"type": "string"
+			}
+		],
+		"name": "apply_gi",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_application_id",
+				"type": "uint32"
+			}
+		],
+		"name": "approve_application",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_application_id",
+				"type": "uint32"
+			}
+		],
+		"name": "approve_gi",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "owner",
 				"type": "address"
@@ -808,6 +455,56 @@ var abi = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_GEIN_id",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_status_change_reason",
+				"type": "uint8"
+			}
+		],
+		"name": "burnGEIN",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getApplicationID",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getApproved",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -954,38 +651,6 @@ var abi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getApplicationID",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "getApproved",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -1007,6 +672,24 @@ var abi = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_recipient_address",
+				"type": "address"
+			},
+			{
+				"internalType": "uint32",
+				"name": "_GEIN_id",
+				"type": "uint32"
+			}
+		],
+		"name": "mintGEIN",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1039,6 +722,188 @@ var abi = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_journal_ipfs_hash",
+				"type": "string"
+			}
+		],
+		"name": "publish_journal",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_applicant_did",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_address",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "uint40",
+				"name": "_phone",
+				"type": "uint40"
+			},
+			{
+				"internalType": "string",
+				"name": "_city",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_state",
+				"type": "string"
+			}
+		],
+		"name": "register_applicant",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_admin_address",
+				"type": "address"
+			}
+		],
+		"name": "removeAdmin",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_GIR_address",
+				"type": "address"
+			}
+		],
+		"name": "removeGIR",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_gein_id",
+				"type": "uint32"
+			}
+		],
+		"name": "renew_gi",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_gein_id",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_status_change_reason",
+				"type": "uint8"
+			}
+		],
+		"name": "revoke_gi",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "setApprovalForAll",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1095,6 +960,118 @@ var abi = [
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint32",
+				"name": "_GEIN_id",
+				"type": "uint32"
+			}
+		],
+		"name": "transferGEIN",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_applicant_did",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_address",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "uint40",
+				"name": "_phone",
+				"type": "uint40"
+			},
+			{
+				"internalType": "string",
+				"name": "_city",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_state",
+				"type": "string"
+			}
+		],
+		"name": "update_applicant",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint32",
+				"name": "_application_id",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_gi_status",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint8",
+				"name": "_status_change_reason",
+				"type": "uint8"
+			}
+		],
+		"name": "update_gi_status",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "_applicant_did",
 				"type": "string"
@@ -1135,8 +1112,42 @@ var abi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_applicant_did",
+				"type": "string"
+			}
+		],
+		"name": "verify_applicant_partial",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];
     
 //Smart Contract Address
-var contractaddress = '0x4abBb5021D102E2820569d3D29EfEE1Af55413A8';
+var contractaddress = '0x6CCd7D0D7a84625FA0f6586734dE18900cFc2Dc7';

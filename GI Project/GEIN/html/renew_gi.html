@@ -62,7 +62,7 @@ Description: Renew GI Status
        	<p>
 		<form>
 			<table>
-			 <tr><td> GEIN ID : </td> <td> <input type="text" id="application_id" name="application_id" size="8" maxLength="8" required> </td></tr>
+			 <tr><td> GEIN ID : </td> <td> <input type="text" id="gein_id" name="gein_id" size="8" maxLength="8" required> </td></tr>
 			 <tr><td> <input type="button" onclick="renew_gi()" value="Renew"></td></tr>
 			</table>			
 		</form>
@@ -114,11 +114,11 @@ Description: Renew GI Status
 		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
 							
 		//call the "renew_gi" function
-		console.log("Passing values: ",document.getElementById("application_id").value );
+		console.log("Passing values: ",document.getElementById("gein_id").value );
 		
 		alert("You will be redirected to Payment Gateway. Payment Successful.");
 
-		var result = myContract.methods.renew_gi(document.getElementById("application_id").value ).send(function (err, result) {
+		var result = myContract.methods.renew_gi(document.getElementById("gein_id").value ).send(function (err, result) {
 				
 			console.log("Result: ", result)
 			if (err) { console.log(err); }

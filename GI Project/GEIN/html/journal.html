@@ -159,7 +159,8 @@ Description: Journal Home Page
 		var doc = new jsPDF();
 	
 		applications = content.split("\n");
-		for (let i=0; i<applications.length-1; i++)
+		console.log("Total Applications: ",applications.length);
+		for (let i=0; i<applications.length; i++)
 		{
 			
 			doc.setFontSize(20);

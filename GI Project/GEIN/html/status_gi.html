@@ -120,7 +120,7 @@ Description: View GI Status -->
 			console.log("Result: ", result)
 			if (err) { console.log(err); }
 			if (result) { 
-				if (result[2] == 0) {
+				if (result[2] == 1) {
 					document.getElementById("result").innerHTML += "<table><tr><td> Applicant DID: </td> <td> " + result[0] + " </td> </tr> <tr><td> Product Name: </td> <td> " + result[1] + "</td> </tr> <tr><td> Application/GEIN Status: </td> <td> " + result[2] + " </td> <td> <input type='button' onclick='appeal()' value='Appeal'></td> </td></tr> </table>"; 
 				}
 				else {
@@ -139,12 +139,14 @@ Description: View GI Status -->
 		"GIGRANTED": 5,
 		"GIREVOKED": 6,
 		"APPEALED": 7,
+		"RENEWED": 8,
 	       };
 	const GI_STATUS_CHANGE_REASON = { 
 		"QC_STATISFACTORY": 0,
 		"QC_NS": 1,
 		"TAG_VIOLATION": 2,
 		"GIR_REJECTED": 3,
+		"OTHERS": 4,
 	};
 	function appeal(){
 		console.log("Updating GI/Application status");

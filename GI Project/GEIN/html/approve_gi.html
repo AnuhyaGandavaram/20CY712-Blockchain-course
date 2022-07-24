@@ -1,0 +1,153 @@
+<!--
+Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
+Created Date: 08 Jan 2022
+Updated Date: 19 Jul 2022
+Base Template: code-mentor.org and Glozzom Theme
+Description: GIR Application Approval Page
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Application Approval | GEIN </title>
+  <link rel="icon" type="x-icon" href="../images/GEIN.png">
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/slick-theme.css">
+  <link rel="stylesheet" href="../css/slick.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-primary bg-dark">
+    <div class="container">
+      <a href="about.html" class="navbar-brand" style="color:white;">GEIN</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navNavbar"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="../index.html" class="nav-link" style="color:white;">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="journal.html" class="nav-link" style="color:white;">Journal</a>
+	    </li>
+          <li class="nav-item">
+            <a href="GIS.html" class="nav-link" style="color:white;">GIS</a>
+          </li> 
+          <li class="nav-item">
+            <a href="https://github.com/Amrita-TIFAC-Cyber-Blockchain/GEIN-Distributed-Geographical-Indication-Registry" class="nav-link" style="color:white;">Github</a>
+          </li>   
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto text-center">
+          <h1></h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Approve Application SECTION -->
+  <section id="approve_application" class="py-5">
+    <div class="container">
+	  <h3 align="center">Approve GI</h3>
+	  </br></br>            
+		<p>
+		<form>
+			<table>
+			 <tr><td> Application ID : </td> <td> <input type="text" id="application_id" name="application_id" size="8" maxLength="8" required> </td></tr>
+			 <tr><td> <input type="button" onclick="approve_gi()" value="Approve"></td></tr>
+			</table>			
+		</form>
+	</p>	
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
+   	<script src="../js/gein.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.js"></script>
+    <script>	
+	
+	var account;
+	window.addEventListener('load', async () => {
+
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is Available :) !"); 
+		}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+			
+		}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+		}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			alert('Non-Ethereum browser detected. Please install MetaMask');
+		}
+			
+	});
+			
+	// Function to call the "approve_gi" in Deployed Smart Contract
+	function approve_gi(){
+					
+		console.log("Approving the GI");
+						
+		//Instantiate and connect to contract address via ABI
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+							
+		//call the "approve_gi" function
+		console.log("Passing values: ",document.getElementById("application_id").value);
+
+		var result = myContract.methods.approve_gi(document.getElementById("application_id").value).send(function (err, result) {
+				
+			console.log("Result: ", result);
+			if (err) { console.log(err); }
+			if (result) { alert("GI Approval Initiated"); }
+								
+		});
+					
+	}
+									
+    </script>
+    </div>
+  </section>
+
+
+ <footer id="main-footer" class="text-center p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p><center>Copyright &copy; 2021-2022 <br/> Anuhya G and Ramaguru R, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India <br/> Templates from Glozzom Theme</center></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
+  <script src="../js/slick.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

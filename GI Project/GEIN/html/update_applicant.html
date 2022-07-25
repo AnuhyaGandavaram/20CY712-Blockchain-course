@@ -134,7 +134,33 @@ Description: Applicant Details Updation Page
 		});
 					
 	}
-		
+
+	function verify_applicant() {
+
+		console.log("Getting Applicant details");
+
+		//Instantiate and connect to contract address via ABI
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+
+		//var applicant_id = 1;
+
+		//call the "verify applicant" function
+		console.log("Passing Values: ", did);
+		var result = myContract.methods.verify_applicant_full(did).call(function (err, result) {
+			console.log("result: ", result);
+
+			if (err) { console.log(err); }
+			if (result) { 
+				document.getElementById("applicant_name").value = result[0]; 
+				document.getElementById("applicant_address").value = result[1];
+				document.getElementById("applicant_email").value = result[2];
+				document.getElementById("applicant_phone").value = result[3];
+				document.getElementById("applicant_city").value = result[4];
+				document.getElementById("applicant_state").value = result[5];
+			}
+			if (result[0] != '') {document.getElementById("update").disabled = false; }
+		});
+	}
     </script>
     </div>
   </section>

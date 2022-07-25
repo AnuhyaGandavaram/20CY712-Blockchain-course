@@ -7,7 +7,8 @@
 | Blockchain | Ethereum |
 |:----------:|:--------:|
 | Testnet    | Goerli |
-| Date | 23rd, 24th, 25th Jul 2022 |
+| Initial Deployment Testing | 23rd, 24th Jul 2022 |
+| Final Bug Fix Testing | 25th Jul 2022 |
 
 ### Test Users
 

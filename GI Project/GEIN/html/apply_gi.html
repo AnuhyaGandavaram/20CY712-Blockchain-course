@@ -2,9 +2,10 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 25 Jul 2022
+Updated Date: 27 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
-Description: Apply GI -->
+Description: Apply GI 
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@ Description: Apply GI -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Apply GI | GEIN</title>
-  <link rel="icon" type="x-icon" href="../images/GEIN.png">
+  <link rel="icon" type="x-icon" href="images/GEIN_Logo_F.png">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
@@ -144,8 +145,10 @@ Description: Apply GI -->
 			// Convert the Lat and Long to the corresponding geohash using the h3-js library
 				
 			var lat_long_list = document.getElementById("lat_long_of_regions").value.split(";",10);	
+			
 			var geoh_list = []	
 			console.log(lat_long_list.length)	
+			
 			for (let i=0; i<lat_long_list.length-1; i++)	
 			{	
 				console.log(i)	
@@ -162,7 +165,7 @@ Description: Apply GI -->
 			console.log(geoh_list);	
 			const geoh_list_map = geoh_list.map(x => sha256(x))	
 			var merkle = createMerkleTree(geoh_list, geoh_list_map);	
-			//var merkletree = merkle[0]	
+			// var merkletree = merkle[0]	
 			var merkleroot = merkle[1];	
 
 			myContract.methods.getApplicationID().call().then(id =>{ 
@@ -211,6 +214,7 @@ Description: Apply GI -->
 		});
 				
 	}
+		
 	function createMerkleTree(leaves, leavesmap)
 	{
 		console.log("***********************************************");
@@ -220,7 +224,8 @@ Description: Apply GI -->
 		console.log("The computed root is ", root);
 		console.log("***********************************************");
 		return [tree, root];
-	}	
+	}
+		
 	function checkMerkleTree(leaf, root, tree)	
 	{	
 		console.log("***********************************************");	
@@ -228,7 +233,8 @@ Description: Apply GI -->
 		const leafhash = sha256(leaf)	
 		const proof = tree.getProof(leafhash)	
 		return tree.verify(proof, leafhash, root);	
-	}	
+	}
+		
 	function printTree(tree)	
 	{	
 		console.log("***********************************************");	
@@ -240,9 +246,11 @@ Description: Apply GI -->
 	function toGeoHash(lat, lng, res) {		
 	  return h3.geoToH3(lat, lng, res);	
 	}	
+		
 	function fromGeoHash(h) {	
 	  return h3.h3ToGeo(h);	
-	}	
+	}
+		
 	function getBoundary(h) {	
 	  return h3.h3ToGeoBoundary(h);	
 	}	
@@ -261,7 +269,6 @@ Description: Apply GI -->
       </div>
     </div>
   </footer>
-
 
   <script src="../js/jquery.min.js"></script>
   <script src="../js/popper.min.js"></script>

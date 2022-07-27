@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 25 Jul 2022
+Updated Date: 27 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Journal Home Page
 -->
@@ -11,8 +11,8 @@ Description: Journal Home Page
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>GI Journal | GEIN </title>
-  <link rel="icon" type="x-icon" href="../images/GEIN.png">
+  <title>GI Journal | GEIN</title>
+  <link rel="icon" type="x-icon" href="images/GEIN_Logo_F.png">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
@@ -121,6 +121,7 @@ Description: Journal Home Page
 			
 	});			
 
+	// Invokes the "get_journal" function to get the list of applications to be published in the Journal
 	function fetch_journal() {
 					
 		console.log("Getting Journal Hash");
@@ -142,6 +143,7 @@ Description: Journal Home Page
 	
 	//ipfs_fetch("QmRaiCxJPfrXaV4tNqFARGWmrj8d2WMtGUxD8xaezRq1LC");
 	
+	// Fetches the content for the given IPFS Hash Value
 	async function ipfs_fetch(ipfs_hash) {
 		const node = await Ipfs.create();
 		const chunks = [];
@@ -151,7 +153,8 @@ Description: Journal Home Page
 		console.log("IPFS contents:", chunks.toString());
 		create_pdf(chunks.toString());
 	}
-
+	
+	// Creates PDF from the Content retrieved from the IPFS  
 	function create_pdf(content) {
 	
 		//journalnumber = 1;
@@ -188,9 +191,6 @@ Description: Journal Home Page
       </div>
     </div>
   </footer>
-
-
-
 
 </body>
 </html>

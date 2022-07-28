@@ -1154,5 +1154,4 @@ var topicID_GiApproved = ' ';
 var topicID_GiNFTCreated = ' ';
 var topicID_GiRenewed = ' ';
 var topicID_GiRevoked = ' ';
-
-    event GiNFTBurnt(uint32);
+var topicID_GiNFTBurnt = ' ';

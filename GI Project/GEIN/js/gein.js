@@ -1145,3 +1145,14 @@ var abi = [
     
 //Smart Contract Address
 var contractaddress = '0xDe49e1416d0bc907A8E7B34EF2F1563ABABf058D';
+
+var topicID_NewApplicantCreated = ' ';
+var topicID_UpdatedApplicantDetails = ' ';
+var topicID_GiApplicationCreated = ' ';
+var topicID_GiAppliationApproved = ' ';
+var topicID_GiApproved = ' ';
+var topicID_GiNFTCreated = ' ';
+var topicID_GiRenewed = ' ';
+var topicID_GiRevoked = ' ';
+
+    event GiNFTBurnt(uint32);

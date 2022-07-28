@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 27 Jul 2022
+Updated Date: 28 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality Check Inspector) 
 -->
@@ -12,7 +12,7 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Add Personnel | GEIN</title>
-  <link rel="icon" type="x-icon" href="images/GEIN_Logo_F.png">
+  <link rel="icon" type="x-icon" href="../images/GEIN_Logo_F.png">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
@@ -63,7 +63,7 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 			<table>
 			<tr><td> Address: </td> <td> <input type="text" id="wallet_address" name="wallet_address" size="42" maxLength="42" required> </td></tr>
 			<tr><td> Role: </td> <td> <select id="role" name="role" required><option value=0></option><option value=1>Admin</option> <option value=2>GIR</option> <option value=3>QC</option> <option value=4>Publisher</option> </select></td></tr>
-			<tr><td> <input type="button" onclick="add_role()" value="Add Personnel" id="Add"></td></tr>
+			<tr><td> <input type="submit" onclick="add_role()" value="Add Personnel" id="Add"></td><td> <input type="submit" onclick="remove_role()" value="Remove Personnel" id="Remove"></td></tr>
 			</table>		
 	</p>	
 	</div>
@@ -120,7 +120,10 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					//call the "addAdmin" function
 					var result = myContract.methods.addAdmin(wallet_address).send(function (err, result) {
 						if (err) { console.log(err); }
-						if (result) { console.log("Transaction ID: ", result);}
+						if (result) { 
+							console.log("Transaction ID: ", result);
+							alert("Adding of Admin Instantiated");
+						}
 					});
 				}
 				else if(document.getElementById("role").value == 2){
@@ -131,7 +134,10 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					//call the "addGIR" function
 					var result = myContract.methods.addGIR(wallet_address).send(function (err, result) {
 						if (err) { console.log(err); }
-						if (result) { console.log("Transaction ID: ", result);}
+						if (result) { 
+							console.log("Transaction ID: ", result);
+							alert("Adding GIR Instantiated");
+						}
 					});
 				}
 				else if(document.getElementById("role").value == 3){
@@ -142,7 +148,10 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					//call the "addQC" function
 					var result = myContract.methods.addQC(wallet_address).send(function (err, result) {
 						if (err) { console.log(err); }
-						if (result) { console.log("Transaction ID: ", result); }
+						if (result) { 
+							console.log("Transaction ID: ", result); 
+							alert("Adding QC Instantiated");
+						}
 					});
 				}
 				else if(document.getElementById("role").value == 4){
@@ -153,7 +162,10 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 					//call the "addPublisher" function
 					var result = myContract.methods.addPublisher(wallet_address).send(function (err, result) {
 						if (err) { console.log(err); }
-						if (result) { console.log("Transaction ID: ", result);	}
+						if (result) { 
+							console.log("Transaction ID: ", result);
+							alert("Adding Publisher Instantiated");
+						}
 					});
 				}
 				else{
@@ -163,7 +175,84 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 			else{
 				alert("Not a valid Ethereum Address");
 			}		
-		}	
+		}
+
+		// Function to call the "remove_role" in Deployed Smart Contract
+		function remove_role(){
+			
+			var wallet_address = document.getElementById("wallet_address").value;
+			if(wallet_address == account){
+				alert("Self Removal Restricted");
+			}
+			else if(wallet_address.startsWith("0x") && wallet_address.length==42){
+				
+				//Instantiate and connect to contract address via ABI
+				var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+				
+				if(document.getElementById("role").value == 1){
+
+					console.log("Removing Admin");
+					console.log("Passing Values: ", wallet_address);
+
+					//call the "removeAdmin" function
+					var result = myContract.methods.removeAdmin(wallet_address).send(function (err, result) {
+						if (err) { console.log(err); }
+						if (result) { 
+							console.log("Transaction ID: ", result);
+							alert("Admin Removal Instantiated");
+						}
+					});
+				}
+				else if(document.getElementById("role").value == 2){
+
+					console.log("Removing GIR");
+					console.log("Passing Values: ", wallet_address);
+
+					//call the "removeGIR" function
+					var result = myContract.methods.removeGIR(wallet_address).send(function (err, result) {
+						if (err) { console.log(err); }
+						if (result) { 
+							console.log("Transaction ID: ", result);
+							alert("GIR Removal Instantiated");
+						}
+					});
+				}
+				else if(document.getElementById("role").value == 3){
+
+					console.log("Removing Quality Check Inspector");
+					console.log("Passing Values: ", wallet_address);
+
+					//call the "removeQC" function
+					var result = myContract.methods.removeQC(wallet_address).send(function (err, result) {
+						if (err) { console.log(err); }
+						if (result) { 
+							console.log("Transaction ID: ", result); 
+							alert("QC Removal Instantiated");
+						}
+					});
+				}
+				else if(document.getElementById("role").value == 4){
+
+					console.log("Removing Publisher");
+					console.log("Passing Values: ", wallet_address);
+
+					//call the "removePublisher" function
+					var result = myContract.methods.removePublisher(wallet_address).send(function (err, result) {
+						if (err) { console.log(err); }
+						if (result) { 
+							console.log("Transaction ID: ", result);
+							alert("Publisher Removal Instantiated");
+						}
+					});
+				}
+				else{
+					alert("Not a valid choice");
+				}
+			}
+			else{
+				alert("Not a valid Ethereum Address");
+			}		
+		}
     </script>
     </div>
   </div>

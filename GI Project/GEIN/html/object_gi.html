@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 24 Jul 2022
-Updated Date: 27 Jul 2022
+Updated Date: 28 Jul 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Objecting GI Status by GIR or QC 
 -->
@@ -12,7 +12,7 @@ Description: Objecting GI Status by GIR or QC
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Object GI | GEIN</title>
-  <link rel="icon" type="x-icon" href="images/GEIN_Logo_F.png">
+  <link rel="icon" type="x-icon" href="../images/GEIN_Logo_F.png">
   <link rel="stylesheet" href="../css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
@@ -64,7 +64,7 @@ Description: Objecting GI Status by GIR or QC
 			<table>
 			 <tr><td> Application ID: </td> <td> <input type="text" id="application_id" name="application_id" size="8" maxLength="8" required> </td></tr>
 			 <tr><td> Reason for Objection: </td> <td> <select id="objection_reason" name="objection_reason"><option value=0></option><option value=1>Quality not upto the mark</option> <option value=2>Violation reported</option> <option value=3>GIR Rejected</option> <option value=4>Others</option> </select></td></tr>
-			 <tr><td> <input type="button" onclick="object_gi()" value="Object" id="object"></td></tr>
+			 <tr><td> <input type="submit" onclick="object_gi()" value="Object" id="object"></td></tr>
 			</table>		
 	</p>	
 	</div>

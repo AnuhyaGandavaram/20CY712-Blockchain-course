@@ -183,7 +183,7 @@ Description: Onboarding New Admin Personnels (Admin, GIR, Publisher and Quality 
 			var wallet_address = document.getElementById("wallet_address").value;
 			console.log(wallet_address);
 			console.log(account);
-			if(wallet_address == account){
+			if(wallet_address.toLowerCase() == account.toLowerCase()){
 				alert("Self Removal Restricted");
 			}
 			else if(wallet_address.startsWith("0x") && wallet_address.length==42){

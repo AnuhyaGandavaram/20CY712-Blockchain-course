@@ -1062,12 +1062,12 @@ var abi = [
 //Smart Contract Address
 var contractaddress = '0x24234Df1f957b62be25E8218A4F996BF9a64e7eB';
 
-var topicID_NewApplicantCreated = ' ';
-var topicID_UpdatedApplicantDetails = ' ';
-var topicID_GiApplicationCreated = ' ';
-var topicID_GiAppliationApproved = ' ';
-var topicID_GiApproved = ' ';
-var topicID_GiNFTCreated = ' ';
-var topicID_GiRenewed = ' ';
-var topicID_GiRevoked = ' ';
-var topicID_GiNFTBurnt = ' ';
+var topicID_NewApplicantCreated = '0xb1819c09249762de5a81bb036672ea01639399eeb304dc9488170c5dcb5df6ef';
+var topicID_UpdatedApplicantDetails = '0x016fea834e02de1ef768f5e9c14ccc33ad93faf13e5321028af13782e8606d29';
+var topicID_GiApplicationCreated = '0xa481c7e0e25ebad3019a4cdc02525b974ffbc5a66f5732c54be2ab200e271cf4';
+var topicID_GiAppliationApproved = '0x00af34df5488ad5adc4d7534926f2cf4a88a23564a507864a2f285615f9701f3';
+var topicID_GiApproved = '0x15e657e9aebe23ed403ebc9680961c38b1e4220fbcd91b964c0a1e3062328ecc';
+var topicID_GiNFTCreated = '0xb3283f033da59de95792ef407d4ec12c1b2ecde5b9ed65d69b2d29266c5fceea';
+var topicID_GiRenewed = '0x99aeec7c979c0b70cec11c20d736acf2b3c2229afb511083d711d7184b0240de';
+var topicID_GiRevoked = '0x2d227da9d228c789fd1ff20e3d03a072822e71e0bf68f73f84fc59eb65b6b62d';
+var topicID_GiNFTBurnt = '0xb650068610a015647b4d95749ddd7f6c78a5d47a8d6f8ec84d5153c38b41bc55';

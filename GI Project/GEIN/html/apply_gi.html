@@ -171,7 +171,7 @@ Description: Apply GI
 			// var merkletree = merkle[0]	
 			var merkleroot = merkle[1];	
 
-			myContract.methods.getApplicationID().call().then(id =>{ 
+			myContract.methods.applCounter.call().then(id =>{ 
 				console.log("ID: ", id);
 				id = ("000" + id).slice(-4); 
 				application_id = year.toString() + id;	

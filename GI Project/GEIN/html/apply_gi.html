@@ -76,7 +76,7 @@ Description: Apply GI
 			 <tr><td> Latitude & Longitude of Regions of Produce: </td> <td> <input type="text" id="lat_long_of_regions" name="lat_long_of_regions" value="lat,long;lat,long;lat,long;" onload='document.getElementById("lat_long_of_regions").value = ""' required></td> </tr>
 			 <tr><td> Export: </td><td> <select id="export" name="export"><option value=0></option><option value=1>Yes</option><option value=2>No</option></td></tr>
 			 <tr><td> Previous Application Number: </td> <td> <input type="text" id="previous_application_number" name="previous_application_number" size="8" maxLength="8"> </td></tr>
-			 <tr><td> <input type="submit" onclick="apply_gi()" value="Apply" id="apply" disabled="disabled"></td></tr>
+			 <tr><td> <input type="button" onclick="apply_gi()" value="Apply" id="apply" disabled="disabled"></td></tr>
 			</table>	
 			<p style = "color:blue;"> <center> <div id="application_id"></div> </center></p>
 		</form>

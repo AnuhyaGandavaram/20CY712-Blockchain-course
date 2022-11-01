@@ -197,7 +197,7 @@ Description: Apply GI
 		console.log("Getting Applicant details");
 						
 		//Instantiate and connect to contract address via ABI
-		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000000', gas: '80000000000'});
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '6000000000', gas: '80000000000'});
 												
 		//call the "verify applicant" function
 		console.log("Passing Values: ", did)

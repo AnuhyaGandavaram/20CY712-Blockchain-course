@@ -140,7 +140,7 @@ Description: Apply GI
 			var application_id;
 			
 			//Instantiate and connect to contract address via ABI
-			var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+			var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '80000000000'});
 
 			// Split the Latitude and Longitude from the list
 			var lat_long_list = document.getElementById("lat_long_of_regions").value.split(";",10);	
@@ -197,7 +197,7 @@ Description: Apply GI
 		console.log("Getting Applicant details");
 						
 		//Instantiate and connect to contract address via ABI
-		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '80000000000'});
 												
 		//call the "verify applicant" function
 		console.log("Passing Values: ", did)

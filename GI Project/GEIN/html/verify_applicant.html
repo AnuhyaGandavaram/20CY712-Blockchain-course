@@ -117,7 +117,7 @@ Description: Verify Applicant Details Page
 		console.log("Getting Applicant details");
 						
 		//Instantiate and connect to contract address via ABI
-		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '8000000000000', gas: '80000000'});
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '32000000000000', gas: '8000000'});
 												
 		//call the "verify_applicant_full" function
 		console.log("Passing Values: ", did)

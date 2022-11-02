@@ -1,7 +1,7 @@
 <!--
 Authors: Anuhya Gandavaram and Ramaguru Radhakrishnan
 Created Date: 08 Jan 2022
-Updated Date: 28 Jul 2022
+Updated Date: 02 Nov 2022
 Base Template: code-mentor.org and Glozzom Theme
 Description: Verify Applicant Details Page
 -->
@@ -117,7 +117,7 @@ Description: Verify Applicant Details Page
 		console.log("Getting Applicant details");
 						
 		//Instantiate and connect to contract address via ABI
-		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '8000000'});
+		var myContract = new web3.eth.Contract(abi,contractaddress, {from: account, gasPrice: '4000000000', gas: '800000000000'});
 												
 		//call the "verify_applicant_full" function
 		console.log("Passing Values: ", did)
